@@ -1,0 +1,5904 @@
+:root{
+  /* Exact outer ivory is taken from Screen 2 v11 source CSS. */
+  --shared-ivory:#fffcef;
+
+  /* Welcome v6 locked internal design tokens. */
+  --breathing:var(--shared-ivory);
+  --panel:#fbf7ef;
+  --navy:#15385d;
+  --gold:#b67825;
+  --line:#c89d68;
+  --cta-top:#c98a30;
+  --cta-bottom:#b8751e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--shared-ivory)}
+body{overflow-x:hidden;overflow-y:auto}
+
+/* =========================================================
+   SCREEN 1 — WELCOME v6
+   LOCKED INTERNAL COMPOSITION.
+   Only --breathing resolves to Screen 2's exact source ivory.
+   ========================================================= */
+.welcome-module{width:100%;background:var(--shared-ivory)}
+.desktop-screen{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  background:var(--breathing);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+/* Approved section breathing treatment: use existing Welcome breathing room,
+   without adding height or moving either locked screen. 48px is carried from
+   the v6 source's existing breathing minimum rather than introducing a new value. */
+.desktop-screen::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:20px;
+  background:#fff;
+  pointer-events:none;
+}
+.desktop-band-wrap{
+  position:relative;
+  width:min(96vw,120vh);
+  aspect-ratio:3/2;
+  max-height:80vh;
+}
+.desktop-approved-band{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.desktop-cta-hotspot{
+  position:absolute;
+  left:52.4%;
+  top:81.7%;
+  width:38.6%;
+  height:9.2%;
+  border-radius:8px;
+}
+@media (max-height:700px) and (min-width:701px){
+  .desktop-band-wrap{
+    max-height:84vh;
+    width:min(96vw,126vh);
+  }
+}
+.mobile-screen{display:none}
+
+@media (max-width:700px){
+  .desktop-screen{display:none}
+  .mobile-screen{
+    display:block;
+    width:100%;
+    min-height:100svh;
+    background:var(--breathing);
+  }
+
+  .mobile-breathing{
+    height:8svh;
+    min-height:48px;
+    background:var(--breathing);
+  }
+
+  .mobile-panel{
+    background:var(--panel);
+    width:100%;
+  }
+
+  .mobile-portrait{
+    position:relative;
+    width:100%;
+    height:43svh;
+    min-height:285px;
+    max-height:390px;
+    overflow:hidden;
+    background:var(--panel);
+  }
+  .mobile-portrait img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 20%;
+    -webkit-mask-image:
+      linear-gradient(to bottom,
+        #000 0%,
+        #000 68%,
+        rgba(0,0,0,.96) 78%,
+        rgba(0,0,0,.55) 90%,
+        transparent 100%),
+      radial-gradient(ellipse 76% 92% at 50% 47%,
+        #000 0%,
+        #000 66%,
+        rgba(0,0,0,.93) 77%,
+        rgba(0,0,0,.45) 90%,
+        transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom,
+        #000 0%,
+        #000 68%,
+        rgba(0,0,0,.96) 78%,
+        rgba(0,0,0,.55) 90%,
+        transparent 100%),
+      radial-gradient(ellipse 76% 92% at 50% 47%,
+        #000 0%,
+        #000 66%,
+        rgba(0,0,0,.93) 77%,
+        rgba(0,0,0,.45) 90%,
+        transparent 100%);
+    mask-composite: intersect;
+  }
+  .mobile-portrait-fade{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+      linear-gradient(to bottom,
+        rgba(251,247,239,0) 0%,
+        rgba(251,247,239,0) 70%,
+        rgba(251,247,239,.12) 80%,
+        rgba(251,247,239,.45) 90%,
+        rgba(251,247,239,1) 100%);
+  }
+
+  .mobile-copy{
+    padding:2vw 7vw 8vw;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    color:var(--navy);
+    font-family:Baskerville,Georgia,"Times New Roman",serif;
+  }
+
+  .mobile-copy h1{
+    margin:0;
+    color:var(--gold);
+    font-weight:400;
+    font-size:9.6vw;
+    line-height:1.03;
+    letter-spacing:-.03em;
+  }
+
+  .mobile-divider{
+    width:31vw;
+    display:flex;
+    align-items:center;
+    gap:2.2vw;
+    margin:4.8vw 0 4.5vw;
+    color:var(--gold);
+  }
+  .mobile-divider span{
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  .mobile-divider b{
+    font-size:3.2vw;
+    font-weight:400;
+    line-height:1;
+  }
+
+  .mobile-copy p{
+    margin:0;
+    max-width:86vw;
+    font-size:4.55vw;
+    line-height:1.5;
+    letter-spacing:-.008em;
+  }
+
+  .mobile-signature{
+    font-size:7vw;
+    line-height:1.05;
+    margin-bottom:5vw;
+  }
+
+  .mobile-cta{
+    width:min(88vw,430px);
+    min-height:13vw;
+    padding:3vw 4vw;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.55em;
+    border-radius:8px;
+    background:linear-gradient(var(--cta-top),var(--cta-bottom));
+    color:#fff;
+    text-decoration:none;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:3.55vw;
+    line-height:1.15;
+    letter-spacing:.045em;
+    box-shadow:0 2px 5px rgba(70,45,10,.18), inset 0 1px 0 rgba(255,255,255,.18);
+  }
+
+  .bottom-breathing{
+    position:relative;
+    height:8svh;
+    min-height:48px;
+    background:var(--breathing);
+  }
+  .bottom-breathing::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:20px;
+    background:#fff;
+    pointer-events:none;
+  }
+}
+
+@media (max-width:390px){
+  .mobile-copy p{font-size:4.7vw}
+  .mobile-copy h1{font-size:9.8vw}
+  .mobile-cta{font-size:3.7vw}
+}
+
+/* =========================================================
+   SCREEN 2 — v11 LOCK CANDIDATE
+   Internal v11 styles are unchanged. Integration changes:
+   1) full-width outer section uses the ivory sampled from the actual v11 background asset edge (#fffcef)
+   2) no viewport-height wrapper/clipping is introduced
+   3) the exact 900×1350 desktop composition remains centered and complete
+   ========================================================= */
+.life-module{
+  width:100%;
+  background:var(--shared-ivory);
+  display:flex;
+  justify-content:center;
+}
+.life-module .frame{
+  width:min(100vw,900px);
+  aspect-ratio:2/3;
+  overflow:hidden;
+}
+.life-module .screen{
+  position:relative;
+  width:900px;
+  height:1350px;
+  transform-origin:top left;
+  font-family:Baskerville, Georgia, "Times New Roman", serif;
+  color:#153656;
+}
+.life-module .bg{position:absolute;inset:0;width:900px;height:1350px;object-fit:cover}
+.life-module .text{position:absolute;left:0;width:900px;text-align:center;white-space:nowrap}
+.life-module .title1{
+  top:48px;
+  font-size:48px;
+  line-height:1;
+  font-weight:400;
+  letter-spacing:-1.2px;
+}
+.life-module .title2{
+  top:112px;
+  font-size:57px;
+  line-height:1;
+  font-style:italic;
+  color:#b27a33;
+  letter-spacing:-1.4px;
+}
+.life-module .divider{
+  position:absolute;
+  left:360px;
+  width:180px;
+  height:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#b27a33;
+}
+.life-module .divider span{height:1px;flex:1;background:#cba676}
+.life-module .divider b{font-size:15px;line-height:1;font-weight:400}
+.life-module .d1{top:200px}
+.life-module .d2{top:356px}
+.life-module .d3{top:594px}
+.life-module .d4{top:724px}
+.life-module .d5{top:846px}
+.life-module .d6{top:1092px}
+
+.life-module .transition-row{
+  position:absolute;
+  top:238px;
+  left:48px;
+  width:804px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  font-size:20px;
+  line-height:1;
+  white-space:nowrap;
+}
+.life-module .transition-row i{
+  width:1px;
+  height:43px;
+  background:#cba676;
+  flex:none;
+}
+.life-module .simply{
+  top:302px;
+  font-size:24px;
+  line-height:1;
+  font-style:italic;
+  color:#b27a33;
+}
+.life-module .statement{
+  font-size:36px;
+  line-height:1.12;
+  font-weight:400;
+  letter-spacing:-0.7px;
+}
+.life-module .reality{top:392px}
+.life-module .small{
+  font-size:22px;
+  line-height:1.35;
+  font-weight:400;
+  letter-spacing:-0.1px;
+}
+.life-module .friction{top:486px}
+.life-module .once{top:632px}
+.life-module .shaped{top:754px}
+.life-module .inward{top:878px}
+.life-module .inward em{
+  color:#b27a33;
+  font-style:normal;
+}
+.life-module .evolve{top:962px}
+.life-module .begin{
+  top:1148px;
+  font-size:34px;
+}
+.life-module .cta{
+  position:absolute;
+  left:214px;
+  top:1201px;
+  width:472px;
+  height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border-radius:7px;
+  background:linear-gradient(#c88e3d,#b87926);
+  color:white;
+  text-decoration:none;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:17px;
+  letter-spacing:.6px;
+}
+.life-module .cta span{font-size:19px}
+
+@media (max-width:899px){
+  .life-module .screen{transform:scale(calc(100vw / 900))}
+}
+
+@media (max-width:700px){
+  .life-module{background:var(--shared-ivory)}
+  .life-module .frame{width:100%;aspect-ratio:auto;overflow:visible}
+  .life-module .screen{
+    width:100%;
+    height:auto;
+    min-height:100vh;
+    transform:none !important;
+    overflow:hidden;
+    padding:7vw 5.5vw 7.5vw;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .life-module .bg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center bottom;
+    z-index:0;
+  }
+
+  .life-module .text,.life-module .divider,.life-module .transition-row,.life-module .cta{
+    position:relative !important;
+    top:auto !important;
+    left:auto !important;
+    width:auto !important;
+    height:auto !important;
+    z-index:1;
+    transform:none !important;
+  }
+  .life-module .text{white-space:normal;width:100% !important}
+
+  .life-module .title1{
+    order:1;
+    font-size:8.6vw;
+    line-height:1.05;
+    letter-spacing:-.035em;
+  }
+  .life-module .title2{
+    order:2;
+    margin-top:1.6vw;
+    font-size:9.5vw;
+    line-height:1.03;
+    letter-spacing:-.03em;
+  }
+
+  .life-module .d1{order:3;margin-top:6.5vw}
+
+  .life-module .transition-row{
+    order:4;
+    margin-top:5vw;
+    width:100% !important;
+    padding:0 1vw;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:2.2vw 3vw;
+    font-size:4.25vw;
+    line-height:1.25;
+    white-space:normal;
+  }
+  .life-module .transition-row i{display:none}
+
+  .life-module .simply{
+    order:5;
+    margin-top:5vw;
+    font-size:4.8vw;
+    line-height:1.3;
+    padding:0 5vw;
+  }
+
+  .life-module .d2{order:6;margin-top:6vw}
+  .life-module .reality{order:7;margin-top:4.8vw}
+  .life-module .friction{order:8;margin-top:3.2vw}
+  .life-module .d3{order:9;margin-top:6vw}
+  .life-module .once{order:10;margin-top:4.8vw}
+  .life-module .d4{order:11;margin-top:6vw}
+  .life-module .shaped{order:12;margin-top:4.8vw}
+  .life-module .d5{order:13;margin-top:6vw}
+  .life-module .inward{order:14;margin-top:4.8vw}
+  .life-module .evolve{order:15;margin-top:3.2vw}
+  .life-module .d6{order:16;margin-top:6vw}
+  .life-module .begin{
+    order:17;
+    margin-top:4.8vw;
+    font-size:7vw;
+    line-height:1.12;
+  }
+
+  .life-module .cta{
+    order:18;
+    margin-top:4vw;
+    width:min(88%,430px) !important;
+    min-height:13vw;
+    padding:3.2vw 5vw;
+    border-radius:8px;
+    font-size:3.65vw;
+    line-height:1.15;
+    text-align:center;
+  }
+
+  .life-module .divider{
+    width:34vw !important;
+    display:flex;
+    align-items:center;
+    gap:2.2vw;
+  }
+  .life-module .divider b{font-size:3.3vw}
+
+  .life-module .statement{
+    font-size:7.1vw;
+    line-height:1.14;
+    letter-spacing:-.025em;
+  }
+  .life-module .small{
+    font-size:4.5vw;
+    line-height:1.42;
+    letter-spacing:0;
+    padding:0 2vw;
+  }
+
+  .life-module .reality br,.life-module .once br,.life-module .shaped br,.life-module .inward br,.life-module .friction br,.life-module .evolve br{
+    display:none;
+  }
+}
+
+@media (max-width:390px){
+  .life-module .title1{font-size:8.9vw}
+  .life-module .title2{font-size:9.8vw}
+  .life-module .statement{font-size:7.25vw}
+  .life-module .small{font-size:4.65vw}
+  .life-module .transition-row{font-size:4.35vw}
+  .life-module .simply{font-size:4.9vw}
+  .life-module .cta{font-size:3.8vw}
+}
+
+/* =========================================================
+   SCREEN 3 — WHY DO WE EXPERIENCE INTERNAL FRICTION?
+   New live HTML/CSS recreation from the approved 900×1350 slide.
+   No rules above this point are modified.
+   ========================================================= */
+.friction-module{
+  width:100%;
+  background:var(--shared-ivory);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.friction-module::before{
+  content:"";
+  display:block;
+  width:100%;
+  height:20px;
+  background:#fff;
+  flex:none;
+}
+.friction-frame{
+  width:min(100vw,900px);
+  aspect-ratio:2/3;
+  overflow:hidden;
+}
+.friction-screen{
+  position:relative;
+  width:900px;
+  height:1350px;
+  transform-origin:top left;
+  overflow:hidden;
+  font-family:Baskerville,Georgia,"Times New Roman",serif;
+  color:#153656;
+  background:#fffcef;
+}
+.friction-bg{
+  position:absolute;
+  inset:0;
+  width:900px;
+  height:1350px;
+  object-fit:cover;
+  object-position:center bottom;
+  z-index:0;
+  filter:saturate(.9) brightness(1.06);
+}
+.friction-wash{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(to bottom,
+    rgba(255,252,239,.98) 0%,
+    rgba(255,252,239,.96) 47%,
+    rgba(255,252,239,.88) 61%,
+    rgba(255,252,239,.42) 82%,
+    rgba(255,252,239,.06) 100%);
+}
+.friction-screen > *:not(.friction-bg):not(.friction-wash){position:absolute;z-index:2}
+.friction-screen h2{
+  top:47px;
+  left:90px;
+  width:720px;
+  margin:0;
+  text-align:center;
+  font-size:56px;
+  line-height:1.02;
+  font-weight:400;
+  letter-spacing:-1.1px;
+}
+.s3-divider{
+  left:360px;
+  width:180px;
+  height:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#b27a33;
+}
+.s3-divider span{height:1px;flex:1;background:#cba676}
+.s3-divider b{font-size:15px;line-height:1;font-weight:400}
+.intro-divider{top:181px}
+.s3-intro{
+  top:208px;
+  left:108px;
+  width:684px;
+  text-align:center;
+  font-size:21px;
+  line-height:1.26;
+}
+.s3-intro p{margin:0 0 17px}
+.s3-intro em{color:#b27a33;font-style:normal;font-weight:600}
+.gap-label{
+  top:438px;
+  left:0;
+  width:900px;
+  text-align:center;
+  color:#b27a33;
+  font-size:24px;
+  letter-spacing:.2px;
+}
+.gap-diagram{
+  top:462px;
+  left:120px;
+  width:660px;
+  height:300px;
+}
+.gap-card{
+  position:absolute;
+  top:0;
+  width:220px;
+  height:300px;
+  border:1px solid #d7ad70;
+  border-radius:10px;
+  background:rgba(255,252,247,.42);
+  text-align:center;
+  padding:18px 16px;
+}
+.gap-card.demands{left:0}
+.gap-card.operating{right:0}
+.card-icon{width:66px;height:66px;margin:0 auto 14px;color:#b27a33}
+.card-icon svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.gap-card h3{margin:0;font-size:20px;line-height:1.15;font-weight:600;letter-spacing:.15px}
+.mini-divider{display:flex;align-items:center;gap:8px;width:116px;margin:12px auto 10px;color:#b27a33}
+.mini-divider span{height:1px;flex:1;background:#d2b183}
+.mini-divider b{font-size:8px;font-weight:400}
+.gap-card p{margin:0;font-size:16px;line-height:1.52}
+.gap-center{position:absolute;left:220px;top:0;width:220px;height:300px}
+.gap-arrows{position:absolute;top:57px;width:88px;display:flex;align-items:center;color:#b27a33}
+.gap-arrows span{border-top:3px dotted #b27a33;flex:1}
+.gap-arrows i{font-style:normal;font-size:15px;line-height:1}
+.left-arrow{left:0}.right-arrow{right:0}
+.friction-circle{
+  position:absolute;
+  top:91px;
+  left:50px;
+  width:120px;
+  height:120px;
+  border:1.5px dashed #c68a3a;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:18px;
+  line-height:1.22;
+  font-weight:600;
+  background:rgba(255,252,239,.2);
+}
+.symptom-title{
+  top:795px;
+  left:96px;
+  width:708px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  color:#b27a33;
+}
+.symptom-title span{height:1px;background:#d2b183;flex:1}
+.symptom-title strong{font-size:18px;font-weight:500;white-space:nowrap;letter-spacing:.2px}
+.symptoms{
+  top:835px;
+  left:82px;
+  width:736px;
+  height:95px;
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+}
+.symptom{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;border-right:1px solid #d7bea0;font-size:14px;line-height:1.15;text-align:center}
+.symptom:last-child{border-right:0}
+.symptom-icon{height:52px;width:52px;display:flex;align-items:center;justify-content:center;color:#b27a33;line-height:1}
+.symptom-icon svg{width:48px;height:48px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.closing-divider{top:950px}
+.evolve-message{
+  top:982px;
+  left:144px;
+  width:612px;
+  text-align:center;
+  font-size:31px;
+  line-height:1.18;
+  letter-spacing:-.35px;
+}
+.meaning-box{
+  top:1114px;
+  left:143px;
+  width:614px;
+  height:104px;
+  border:1px solid #d7ad70;
+  border-radius:9px;
+  background:rgba(255,252,247,.82);
+  display:flex;
+  align-items:center;
+  padding:0 26px;
+  gap:24px;
+  font-size:21px;
+  line-height:1.25;
+}
+.meaning-box em{color:#b27a33;font-style:italic}
+.meaning-icon{
+  position:static !important;
+  width:58px;
+  height:58px;
+  flex:none;
+  border:2px solid #b27a33;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#b27a33;
+  font-size:35px;
+}
+.continue-cue{
+  top:1237px;
+  left:0;
+  width:900px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  color:#b27a33;
+}
+.continue-cue span{font-size:45px;line-height:.8;font-family:Georgia,serif}
+.continue-cue b{margin-top:14px;font-size:18px;font-weight:500;letter-spacing:.3px}
+
+@media (max-width:899px){
+  .friction-screen{transform:scale(calc(100vw / 900))}
+}
+
+@media (max-width:700px){
+  .friction-module::before{height:20px}
+  .friction-frame{width:100%;aspect-ratio:auto;overflow:visible}
+  .friction-screen{
+    width:100%;
+    height:auto;
+    min-height:100vh;
+    transform:none !important;
+    padding:9vw 5.5vw 8vw;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    overflow:hidden;
+  }
+  .friction-bg{width:100%;height:100%;object-fit:cover;object-position:center bottom}
+  .friction-wash{background:linear-gradient(to bottom,rgba(255,252,239,.98) 0%,rgba(255,252,239,.96) 55%,rgba(255,252,239,.82) 72%,rgba(255,252,239,.2) 100%)}
+  .friction-screen > *:not(.friction-bg):not(.friction-wash){position:relative!important;top:auto!important;left:auto!important;width:auto!important;height:auto!important;z-index:2;transform:none!important}
+  .friction-screen h2{order:1;margin:0;width:100%!important;font-size:9vw;line-height:1.02;letter-spacing:-.035em}
+  .intro-divider{order:2;margin-top:5vw;width:34vw!important}
+  .s3-intro{order:3;margin-top:4vw;width:91%!important;font-size:4.55vw;line-height:1.38}
+  .s3-intro p{margin:0 0 4.5vw}.s3-intro br{display:none}
+  .gap-label{order:4;margin-top:2vw;font-size:5.6vw;color:#b27a33}
+  .gap-diagram{order:5;margin-top:4vw;width:100%!important;display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:stretch}
+  .gap-card{position:relative!important;top:auto!important;left:auto!important;right:auto!important;width:100%;height:auto;min-height:58vw;padding:4vw 3vw;border-radius:9px}
+  .card-icon{width:13vw;height:13vw;margin-bottom:2.8vw}
+  .gap-card h3{font-size:4.6vw;line-height:1.12}
+  .mini-divider{width:23vw;margin:2.8vw auto 2.5vw}
+  .gap-card p{font-size:3.75vw;line-height:1.45}
+  .gap-center{grid-column:1/-1;position:relative!important;left:auto!important;top:auto!important;width:100%!important;height:32vw!important;margin-top:-1vw}
+  .gap-arrows{top:8vw;width:30vw}.left-arrow{left:7vw}.right-arrow{right:7vw}
+  .friction-circle{top:0;left:50%;transform:translateX(-50%)!important;width:29vw!important;height:29vw!important;font-size:4.2vw}
+  .symptom-title{order:6;margin-top:7vw;width:100%!important;gap:3vw}.symptom-title strong{font-size:4vw;text-align:center;white-space:normal}.symptom-title span{min-width:9vw}
+  .symptoms{order:7;margin-top:4vw;width:100%!important;display:grid;grid-template-columns:repeat(4,1fr);gap:4vw 0;height:auto!important}
+  .symptom{font-size:3.45vw;min-height:19vw;padding:0 1vw}.symptom:nth-child(4){border-right:0}.symptom-icon{width:11vw!important;height:11vw}.symptom-icon svg{width:10vw;height:10vw;stroke-width:1.8}.symptom:nth-child(n+5){border-top:1px solid rgba(215,190,160,.65);padding-top:3vw}.symptom:nth-child(7){border-right:0}
+  .closing-divider{order:8;margin-top:5vw;width:40vw!important}
+  .closing-divider span{display:block!important;flex:1 1 auto!important;min-width:12vw;height:1px!important;background:#cba676!important}
+  .evolve-message{order:9;margin-top:4vw;width:94%!important;font-size:7vw;line-height:1.16}.evolve-message br{display:none}
+  .meaning-box{order:10;margin-top:6vw;width:92%!important;min-height:22vw;padding:4vw 4.5vw;gap:4vw;font-size:4.45vw;border-radius:9px}
+  .meaning-icon{width:12vw!important;height:12vw!important;font-size:7vw}
+  .continue-cue{order:11;margin-top:5vw;width:100%!important}.continue-cue span{font-size:10vw}.continue-cue b{margin-top:2vw;font-size:4.2vw}
+}
+
+
+/* =========================================================
+   SCREEN 3 — MOBILE REFLOW ONLY
+   Desktop remains unchanged.
+   ========================================================= */
+@media (max-width: 700px) {
+  .screen3 {
+    overflow: visible;
+  }
+
+  .screen3 .s3-inner {
+    width: 100%;
+    max-width: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+
+  .screen3 .s3-title {
+    font-size: clamp(40px, 11vw, 56px);
+    line-height: 1.03;
+    max-width: 92vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .screen3 .s3-copy {
+    max-width: 92vw;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(22px, 6vw, 30px);
+    line-height: 1.35;
+  }
+
+  /* Allow natural mobile wrapping instead of desktop-forced line breaks */
+  .screen3 .s3-copy br,
+  .screen3 .s3-close br {
+    display: none;
+  }
+
+  /* GAP area becomes an intentional vertical sequence */
+  .screen3 .gap-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+    width: 100%;
+  }
+
+  .screen3 .gap-title {
+    order: 0;
+    margin-bottom: 6px;
+  }
+
+  .screen3 .gap-card.left {
+    order: 1;
+  }
+
+  .screen3 .gap-center {
+    order: 2;
+  }
+
+  .screen3 .gap-card.right {
+    order: 3;
+  }
+
+  .screen3 .gap-card {
+    width: min(84vw, 360px);
+    min-height: 0;
+    height: auto;
+    padding: 34px 26px 36px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .screen3 .gap-center {
+    position: relative;
+    inset: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 0;
+  }
+
+  .screen3 .gap-center::before,
+  .screen3 .gap-center::after {
+    display: none;
+  }
+
+  .screen3 .friction-circle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  /* Replace desktop horizontal arrows with subtle vertical cues */
+  .screen3 .gap-card.left::after,
+  .screen3 .gap-card.right::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    height: 18px;
+    background: transparent;
+  }
+
+  /* Friction indicators: deliberate 2-row mobile grid */
+  .screen3 .friction-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    max-width: 94vw;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0;
+  }
+
+  .screen3 .friction-item {
+    min-width: 0;
+    padding: 14px 5px 18px;
+    border-right: 1px solid rgba(184, 125, 41, .35);
+    border-bottom: 1px solid rgba(184, 125, 41, .35);
+  }
+
+  .screen3 .friction-item:nth-child(4),
+  .screen3 .friction-item:nth-child(7) {
+    border-right: 0;
+  }
+
+  .screen3 .friction-item:nth-child(n+5) {
+    border-bottom: 0;
+  }
+
+  .screen3 .friction-item:nth-child(5) {
+    grid-column: 1 / 2;
+  }
+  .screen3 .friction-item:nth-child(6) {
+    grid-column: 2 / 3;
+  }
+  .screen3 .friction-item:nth-child(7) {
+    grid-column: 3 / 4;
+  }
+
+  .screen3 .friction-item svg {
+    width: 46px;
+    height: 46px;
+  }
+
+  .screen3 .friction-label {
+    font-size: clamp(16px, 4.4vw, 21px);
+    line-height: 1.12;
+    white-space: normal;
+  }
+
+  .screen3 .friction-heading {
+    width: 100%;
+    max-width: 92vw;
+    text-align: center;
+    line-height: 1.18;
+  }
+
+  .screen3 .s3-close {
+    max-width: 92vw;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(34px, 8vw, 48px);
+    line-height: 1.22;
+  }
+
+  .screen3 .question-box {
+    width: min(92vw, 680px);
+    padding: 24px 20px;
+    gap: 18px;
+    box-sizing: border-box;
+  }
+
+  .screen3 .question-box .q-text {
+    font-size: clamp(22px, 5.6vw, 30px);
+    line-height: 1.25;
+  }
+
+  .screen3 .continue {
+    margin-bottom: 28px;
+  }
+}
+
+
+/* =========================================================
+   SCREEN 3 — MOBILE GAP ALIGNMENT / ARROWS / TOP DIVIDER ONLY
+   ========================================================= */
+@media (max-width:700px){
+
+  /* Full gold divider directly beneath the top question */
+  .friction-module .intro-divider{
+    width:46vw !important;
+    max-width:210px !important;
+    min-width:170px !important;
+    display:flex !important;
+    align-items:center !important;
+    gap:10px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+  .friction-module .intro-divider span{
+    display:block !important;
+    flex:1 1 auto !important;
+    min-width:58px !important;
+    height:1px !important;
+    background:#cba676 !important;
+  }
+
+  /* One centered vertical axis for THE GAP sequence */
+  .friction-module .gap-diagram{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:26px !important;
+    width:100% !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .friction-module .gap-card{
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    width:min(84vw, 360px) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    box-sizing:border-box !important;
+  }
+
+  .friction-module .gap-center{
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    width:100% !important;
+    height:34vw !important;
+    min-height:145px !important;
+    max-height:180px !important;
+    margin:0 auto !important;
+    display:block !important;
+  }
+
+  .friction-module .friction-circle{
+    position:absolute !important;
+    left:50% !important;
+    top:50% !important;
+    transform:translate(-50%,-50%) !important;
+    width:29vw !important;
+    height:29vw !important;
+    max-width:150px !important;
+    max-height:150px !important;
+    min-width:125px !important;
+    min-height:125px !important;
+    margin:0 !important;
+  }
+
+  /* Keep the two dotted arrows outside the dashed circle */
+  .friction-module .gap-arrows{
+    top:50% !important;
+    transform:translateY(-50%) !important;
+    width:22vw !important;
+    max-width:105px !important;
+    min-width:72px !important;
+    display:flex !important;
+    align-items:center !important;
+  }
+
+  .friction-module .left-arrow{
+    left:7vw !important;
+    right:auto !important;
+  }
+
+  .friction-module .right-arrow{
+    right:7vw !important;
+    left:auto !important;
+  }
+
+  .friction-module .gap-arrows span{
+    flex:1 1 auto !important;
+    border-top:3px dotted #b27a33 !important;
+  }
+
+  .friction-module .gap-arrows i{
+    flex:0 0 auto !important;
+    font-size:15px !important;
+    line-height:1 !important;
+  }
+}
+
+
+/* Screen 3 -> Screen 4 breathing band only */
+.screen4-merge-breathing{width:100%;height:20px;background:#fff;}
+
+/* Screen 4 locked v7 local design tokens */
+.screen4{
+  --ivory:#fbf7ec;
+  --navy:#0b315d;
+  --gold:#b5771c;
+  --gold-soft:#c99b57;
+  --serif:Georgia,"Times New Roman",serif;
+  color:var(--navy);
+  font-family:var(--serif);
+}
+.screen4{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:100vh;
+  background-color:var(--ivory);
+  background-image:
+    linear-gradient(to bottom,
+      rgba(251,247,236,.98) 0%,
+      rgba(251,247,236,.94) 34%,
+      rgba(251,247,236,.72) 56%,
+      rgba(251,247,236,.24) 82%,
+      rgba(251,247,236,.08) 100%),
+    url("assets/screen4/screen4-scenery-desktop.jpg");
+  background-repeat:no-repeat;
+  background-position:center top, center bottom;
+  background-size:100% 100%, cover;
+}
+.screen4 .inner{
+  width:min(900px, 100%);
+  margin:0 auto;
+  padding:32px 42px 28px;
+  text-align:center;
+}
+.screen4 .divider{
+  display:flex;
+  width:min(320px, 55%);
+  margin:0 auto;
+  align-items:center;
+  justify-content:center;
+  gap:17px;
+  color:var(--gold);
+}
+.screen4 .divider::before, .screen4 .divider::after{
+  content:"";
+  height:1px;
+  background:var(--gold-soft);
+  flex:1 1 auto;
+}
+.screen4 .rosette{
+  display:block;
+  width:16px;
+  height:16px;
+  position:relative;
+  flex:0 0 16px;
+}
+.screen4 .rosette::before{
+  content:"✿";
+  position:absolute;
+  inset:-4px 0 0;
+  font-size:18px;
+  line-height:18px;
+  color:var(--gold);
+}
+.screen4 .top-divider{margin-bottom:25px}
+.screen4 .eyebrow{
+  margin:0 0 20px;
+  color:var(--gold);
+  font-size:29px;
+  line-height:1.05;
+  font-weight:500;
+  letter-spacing:.025em;
+}
+.screen4 h1{
+  margin:0 auto 38px;
+  max-width:650px;
+  font-size:55px;
+  line-height:1.06;
+  font-weight:500;
+  letter-spacing:-.02em;
+}
+.screen4 .process{
+  margin:0 auto 29px;
+}
+.screen4 .process-step{
+  font-size:35px;
+  line-height:1.1;
+  font-weight:700;
+  letter-spacing:.015em;
+}
+.screen4 .down{
+  height:68px;
+  position:relative;
+  color:var(--gold);
+}
+.screen4 .down::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:10px;
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--gold);
+  transform:translateX(-50%);
+}
+.screen4 .down::after{
+  content:"↓";
+  position:absolute;
+  left:50%;
+  top:12px;
+  transform:translateX(-50%);
+  font-size:43px;
+  font-weight:400;
+  line-height:1;
+}
+.screen4 .mid-divider{margin-top:25px;margin-bottom:18px}
+.screen4 .explain{
+  margin:0 auto 19px;
+  max-width:720px;
+  font-size:24px;
+  line-height:1.28;
+}
+.screen4 .explain em{
+  display:block;
+  margin-top:3px;
+  color:var(--gold);
+  font-size:28px;
+}
+.screen4 .detail-divider{margin-bottom:22px}
+.screen4 .three{
+  display:grid;
+  grid-template-columns:1fr 1.5fr 1fr;
+  align-items:start;
+  margin:0 auto 23px;
+  max-width:760px;
+}
+.screen4 .detail{
+  padding:0 22px;
+  min-height:195px;
+}
+/* Desktop-only: give the center interpretation text a little more usable width.
+   Mobile remains governed by the locked max-width:600px rules below. */
+.screen4 .detail:nth-child(2){
+  padding-left:8px;
+  padding-right:8px;
+}
+.screen4 .detail + .detail{border-left:1px solid rgba(181,119,28,.55)}
+.screen4 .icon{
+  width:72px;height:72px;
+  margin:0 auto 14px;
+  border:2px solid var(--gold);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+}
+.screen4 .icon svg{
+  width:45px;height:45px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.screen4 .detail p{
+  margin:0;
+  font-size:20px;
+  line-height:1.23;
+}
+.screen4 .response-divider{margin-bottom:17px}
+.screen4 .response-intro{
+  margin:0 0 15px;
+  font-size:23px;
+}
+.screen4 .response-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  max-width:800px;
+  margin:0 auto 25px;
+}
+.screen4 .response-item{
+  padding:0 15px;
+}
+.screen4 .response-item + .response-item{border-left:1px solid rgba(181,119,28,.55)}
+.screen4 .response-icon{
+  height:65px;
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+}
+.screen4 .response-icon svg{
+  width:54px;height:54px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.screen4 .response-label{
+  margin-top:5px;
+  font-size:17px;
+  font-weight:700;
+}
+.screen4 .together-divider{margin-bottom:16px}
+.screen4 .together{
+  margin:0 auto 21px;
+  max-width:690px;
+  color:var(--gold);
+  font-size:30px;
+  line-height:1.25;
+  font-style:italic;
+}
+.screen4 .final-divider{margin-bottom:15px}
+.screen4 .final{
+  margin:0 auto;
+  max-width:690px;
+  font-size:22px;
+  line-height:1.28;
+}
+.screen4 .final em{
+  display:block;
+  color:var(--gold);
+  font-size:25px;
+}
+.screen4 .continue{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  margin-top:13px;
+  color:var(--gold);
+  text-decoration:none;
+  font-size:20px;
+  letter-spacing:.02em;
+}
+.screen4 .continue .arrow{
+  font-size:42px;
+  line-height:.9;
+  margin-bottom:4px;
+}
+
+
+@media (min-width:601px){
+  .screen4 .detail-meaning{
+    padding-left:14px;
+    padding-right:14px;
+  }
+  .screen4 .detail-meaning p{
+    font-size:19px;
+    line-height:1.25;
+  }
+  .screen4 .detail-meaning .meaning-line{
+    white-space:nowrap;
+  }
+}
+
+@media (max-width:600px){
+  .screen4{
+    background-image:
+      linear-gradient(to bottom,
+        rgba(251,247,236,.96) 0%,
+        rgba(251,247,236,.88) 42%,
+        rgba(251,247,236,.58) 68%,
+        rgba(251,247,236,.16) 100%),
+      url("assets/screen4/screen4-scenery-mobile.jpg");
+    background-position:center top, center bottom;
+    background-size:100% 100%, cover;
+  }
+
+  .screen4 .inner{
+    padding:34px 24px 38px;
+  }
+  .screen4 .divider{
+    width:min(330px, 72%);
+    gap:14px;
+  }
+  .screen4 .top-divider{margin-bottom:22px}
+  .screen4 .eyebrow{
+    font-size:21px;
+    margin-bottom:18px;
+  }
+  .screen4 h1{
+    max-width:355px;
+    font-size:40px;
+    line-height:1.09;
+    margin-bottom:35px;
+  }
+  .screen4 .process{
+    margin-bottom:24px;
+  }
+  .screen4 .process-step{
+    font-size:26px;
+  }
+  .screen4 .down{
+    height:57px;
+  }
+  .screen4 .down::after{
+    font-size:37px;
+  }
+  .screen4 .mid-divider{
+    margin-top:20px;
+    margin-bottom:18px;
+  }
+  .screen4 .explain{
+    max-width:355px;
+    font-size:19px;
+    line-height:1.35;
+    margin-bottom:18px;
+  }
+  .screen4 .explain em{
+    font-size:21px;
+    line-height:1.3;
+  }
+  .screen4 .detail-divider{
+    margin-bottom:24px;
+  }
+  .screen4 .three{
+    display:block;
+    max-width:370px;
+    margin-bottom:24px;
+  }
+  .screen4 .detail{
+    min-height:0;
+    padding:0 5px 27px;
+  }
+  .screen4 .detail + .detail{
+    border-left:0;
+    border-top:1px solid rgba(181,119,28,.45);
+    padding-top:27px;
+  }
+  .screen4 .icon{
+    width:66px;height:66px;
+    margin-bottom:13px;
+  }
+  .screen4 .icon svg{width:41px;height:41px}
+  .screen4 .detail p{
+    font-size:18px;
+    line-height:1.3;
+    max-width:330px;
+    margin:auto;
+  }
+  .screen4 .response-divider{
+    margin-bottom:17px;
+  }
+  .screen4 .response-intro{
+    font-size:19px;
+    line-height:1.3;
+    margin-bottom:20px;
+  }
+  .screen4 .response-grid{
+    grid-template-columns:repeat(2,1fr);
+    max-width:370px;
+    margin-bottom:25px;
+  }
+  .screen4 .response-item{
+    padding:17px 8px 18px;
+    border-bottom:1px solid rgba(181,119,28,.42);
+  }
+  .screen4 .response-item + .response-item{
+    border-left:0;
+  }
+  .screen4 .response-item:nth-child(even){
+    border-left:1px solid rgba(181,119,28,.42);
+  }
+  .screen4 .response-item:last-child{
+    grid-column:1 / -1;
+    border-left:0;
+    border-bottom:0;
+    width:50%;
+    justify-self:center;
+  }
+  .screen4 .response-icon{height:58px}
+  .screen4 .response-icon svg{width:49px;height:49px}
+  .screen4 .response-label{font-size:16px}
+  .screen4 .together-divider{margin-bottom:17px}
+  .screen4 .together{
+    max-width:360px;
+    width:auto;
+    font-size:24px;
+    line-height:1.28;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:22px;
+    text-align:center;
+  }
+  .screen4 .together-line{
+    white-space:normal;
+  }
+  .screen4 .final-divider{margin-bottom:17px}
+  .screen4 .final{
+    max-width:360px;
+    font-size:19px;
+    line-height:1.32;
+  }
+  .screen4 .final em{
+    font-size:21px;
+    line-height:1.3;
+    margin-top:3px;
+  }
+  .screen4 .continue{
+    margin-top:17px;
+    font-size:18px;
+  }
+  .screen4 .continue .arrow{font-size:39px}
+}
+
+
+/* =========================================================
+   SCREEN 5 — AWARENESS
+   Isolated addition. No Screen 1–4 selectors are modified.
+   ========================================================= */
+.screen5-merge-breathing{
+  width:100%;
+  height:20px;
+  background:#fff;
+}
+.screen5{
+  --s5-navy:#15385d;
+  --s5-gold:#b67825;
+  --s5-ivory:#fffcef;
+  position:relative;
+  width:100%;
+  min-height:1350px;
+  overflow:hidden;
+  color:var(--s5-navy);
+  font-family:Georgia,"Times New Roman",serif;
+  text-align:center;
+  background-color:var(--s5-ivory);
+  background-image:
+    linear-gradient(to bottom,
+      rgba(255,252,239,.34) 0%,
+      rgba(255,252,239,.28) 54%,
+      rgba(255,252,239,.12) 100%),
+    url("assets/screen5/screen5-awareness-scenery.png");
+  background-repeat:no-repeat;
+  background-position:center top, center bottom;
+  background-size:100% 100%, cover;
+}
+.screen5-inner{
+  width:min(900px,100%);
+  min-height:1350px;
+  margin:0 auto;
+  padding:56px 42px 34px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.screen5-question{
+  margin:0 0 8px;
+  font-size:46px;
+  line-height:1.08;
+  font-weight:400;
+  letter-spacing:-.015em;
+}
+.screen5-title{
+  color:var(--s5-gold);
+  font-size:82px;
+  line-height:1;
+  font-weight:400;
+  margin-bottom:18px;
+}
+.screen5-rule{
+  width:150px;
+  display:grid;
+  grid-template-columns:1fr 10px 1fr;
+  align-items:center;
+  gap:10px;
+  margin:0 auto 17px;
+}
+.screen5-rule span{height:1px;background:rgba(182,120,37,.55)}
+.screen5-rule b{
+  width:8px;height:8px;border-radius:50%;background:var(--s5-gold);display:block;
+}
+.screen5-lead{
+  margin:0 0 17px;
+  font-size:31px;
+  line-height:1.15;
+}
+.screen5-intro{
+  margin:3px auto 0;
+  max-width:700px;
+  font-size:21px;
+  line-height:1.25;
+}
+.screen5-intro p{margin:0 0 5px}
+.screen5-flow{
+  margin:58px auto 0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.screen5-flow-step{
+  font-size:28px;
+  line-height:1.1;
+  font-weight:700;
+}
+.screen5-flow-step.screen5-awareness{color:var(--s5-gold)}
+.screen5-arrow{
+  color:var(--s5-gold);
+  font-size:45px;
+  line-height:1;
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400;
+}
+.screen5-rule-lower{margin-top:48px;margin-bottom:17px}
+.screen5-space-copy{
+  font-size:20px;
+  line-height:1.27;
+}
+.screen5-space-copy p{margin:0 0 4px}
+.screen5-space-copy em{
+  display:block;
+  color:var(--s5-gold);
+  margin-top:13px;
+  font-size:22px;
+  line-height:1.25;
+}
+.screen5-rule-final{margin-top:25px;margin-bottom:17px}
+.screen5-close{
+  margin:0;
+  font-size:20px;
+  line-height:1.3;
+}
+.screen5-continue{
+  margin-top:18px;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  color:var(--s5-gold);
+  text-decoration:none;
+  font-size:17px;
+  font-weight:400;
+}
+.screen5-continue span{font-size:43px;line-height:.85;margin-bottom:8px;font-weight:400}
+.screen5-continue b{font-weight:400}
+
+@media (min-width:901px){
+  .screen5{
+    min-height:1350px;
+    background-size:100% 100%, min(100vw,1350px) auto;
+  }
+}
+
+@media (max-width:700px){
+  .screen5-merge-breathing{height:20px}
+  .screen5{
+    min-height:0;
+    background-image:
+      linear-gradient(to bottom,
+        rgba(255,252,239,.38) 0%,
+        rgba(255,252,239,.30) 52%,
+        rgba(255,252,239,.13) 100%),
+      url("assets/screen5/screen5-awareness-scenery.png");
+    background-position:center top, center bottom;
+    background-size:100% 100%, auto 100%;
+  }
+  .screen5-inner{
+    width:100%;
+    min-height:100svh;
+    padding:46px 22px 34px;
+  }
+  .screen5-question{
+    font-size:35px;
+    line-height:1.1;
+    margin-bottom:8px;
+  }
+  .screen5-title{
+    font-size:66px;
+    margin-bottom:19px;
+  }
+  .screen5-rule{
+    width:126px;
+    gap:9px;
+    margin-bottom:17px;
+  }
+  .screen5-lead{
+    font-size:26px;
+    line-height:1.17;
+    margin-bottom:17px;
+  }
+  .screen5-intro{
+    max-width:390px;
+    font-size:18px;
+    line-height:1.31;
+    margin-top:3px;
+  }
+  .screen5-intro p{margin-bottom:4px}
+  .screen5-flow{margin-top:54px}
+  .screen5-flow-step{font-size:24px}
+  .screen5-arrow{font-size:39px;height:67px}
+  .screen5-rule-lower{margin-top:45px;margin-bottom:16px}
+  .screen5-space-copy{
+    font-size:18px;
+    line-height:1.31;
+  }
+  .screen5-space-copy em{
+    font-size:20px;
+    line-height:1.28;
+    margin-top:12px;
+  }
+  .screen5-rule-final{margin-top:24px;margin-bottom:16px}
+  .screen5-close{
+    font-size:18px;
+    line-height:1.33;
+  }
+  .screen5-continue{
+    margin-top:17px;
+    font-size:17px;
+  }
+  .screen5-continue span{font-size:40px}
+}
+
+@media (max-width:390px){
+  .screen5-inner{padding-left:18px;padding-right:18px}
+  .screen5-question{font-size:32px}
+  .screen5-title{font-size:60px}
+  .screen5-lead{font-size:24px}
+  .screen5-intro,.screen5-space-copy,.screen5-close{font-size:17px}
+  .screen5-flow-step{font-size:22px}
+}
+
+
+/* =========================================================
+   LOCKED CORRECTION — SCREENS 2 & 3 DESKTOP SCENERY ONLY
+   Rule: atmospheric scenery spans the full browser width while
+   all existing content/layout/typography/spacing remains locked.
+   Mobile behavior is unchanged.
+   ========================================================= */
+@media (min-width: 901px){
+  .life-module{
+    background-image:url("assets/screen1-clean-bg.jpg");
+    background-repeat:no-repeat;
+    background-position:center top;
+    background-size:100% 100%;
+  }
+  .life-module .bg{
+    visibility:hidden;
+  }
+
+  .friction-module{
+    background-image:
+      linear-gradient(to bottom,
+        rgba(255,252,239,.98) 0%,
+        rgba(255,252,239,.96) 47%,
+        rgba(255,252,239,.88) 61%,
+        rgba(255,252,239,.42) 82%,
+        rgba(255,252,239,.06) 100%),
+      url("assets/screen1-clean-bg.jpg");
+    background-repeat:no-repeat,no-repeat;
+    background-position:center top,center top;
+    background-size:100% 100%,100% 100%;
+  }
+  .friction-module .friction-bg,
+  .friction-module .friction-wash{
+    visibility:hidden;
+  }
+}
+
+/* =========================================================
+   SCREEN 3 DESKTOP — APPROVED BACKGROUND-LAYER FIX ONLY
+   The full-width scenery already exists. This patch removes
+   the opaque central Screen 3 surface so that scenery remains
+   continuous behind the locked content. No layout/content/
+   typography/mobile changes.
+   ========================================================= */
+@media (min-width: 901px){
+  .friction-module .friction-inner,
+  .friction-module .friction-content,
+  .friction-module .friction-stage,
+  .friction-module .friction-panel,
+  .friction-module .friction-shell{
+    background:transparent !important;
+  }
+}
+
+/* =========================================================
+   SCREEN 3 DESKTOP — EXACT APPROVED FIX
+   Only change: remove the opaque background from the real
+   .friction-screen canvas so existing full-width scenery
+   remains continuous behind the locked content.
+   ========================================================= */
+@media (min-width: 901px){
+  .friction-screen{
+    background:transparent !important;
+  }
+}
+
+/* =========================================================
+   SCREEN 6 — SELF-LEADERSHIP
+   Isolated addition. No Screen 1–5 selectors are modified.
+   Desktop scenery is full-width; content remains centered.
+   ========================================================= */
+.screen6-merge-breathing{
+  width:100%;
+  height:20px;
+  background:#fff;
+}
+
+.screen6{
+  --s6-navy:#15385d;
+  --s6-gold:#a56d22;
+  --s6-ivory:#fffaf0;
+  position:relative;
+  width:100%;
+  min-height:1350px;
+  overflow:hidden;
+  color:var(--s6-navy);
+  font-family:Georgia,"Times New Roman",serif;
+  text-align:center;
+  background-color:var(--s6-ivory);
+  background-image:
+    linear-gradient(to bottom,
+      rgba(255,250,240,.30) 0%,
+      rgba(255,250,240,.24) 52%,
+      rgba(255,250,240,.10) 100%),
+    url("assets/screen6/screen6-self-leadership-scenery.png");
+  background-repeat:no-repeat,no-repeat;
+  background-position:center top,center bottom;
+  background-size:100% 100%,100% 100%;
+}
+
+.screen6-inner{
+  width:min(900px,100%);
+  min-height:1350px;
+  margin:0 auto;
+  padding:54px 42px 30px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.screen6-question{
+  margin:0 0 9px;
+  font-size:45px;
+  line-height:1.08;
+  font-weight:400;
+  letter-spacing:-.015em;
+}
+
+.screen6-title{
+  color:var(--s6-gold);
+  font-size:78px;
+  line-height:1;
+  font-weight:400;
+  margin-bottom:23px;
+}
+
+.screen6-rule{
+  width:190px;
+  display:grid;
+  grid-template-columns:1fr 8px 1fr;
+  align-items:center;
+  gap:8px;
+  margin:0 auto 26px;
+}
+.screen6-rule span{
+  height:1px;
+  background:rgba(165,109,34,.48);
+}
+.screen6-rule b{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--s6-gold);
+  display:block;
+}
+
+.screen6-lead{
+  margin:0;
+  font-size:27px;
+  line-height:1.27;
+  font-weight:400;
+}
+.screen6-lead em{
+  color:var(--s6-gold);
+  font-style:italic;
+}
+
+.screen6-flow{
+  margin:53px auto 0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.screen6-flow-step{
+  font-size:29px;
+  line-height:1.1;
+  font-weight:700;
+  letter-spacing:.01em;
+}
+.screen6-lead-yourself{
+  margin-top:1px;
+}
+.screen6-arrow-stack{
+  height:116px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  color:var(--s6-gold);
+}
+.screen6-arrow-stack b{
+  width:9px;
+  height:9px;
+  margin-top:11px;
+  border-radius:50%;
+  background:var(--s6-gold);
+  display:block;
+}
+.screen6-arrow-stack span{
+  font-size:48px;
+  line-height:1;
+  margin-top:13px;
+  font-weight:400;
+}
+
+.screen6-rule-one{
+  margin-top:30px;
+  margin-bottom:24px;
+}
+.screen6-choice{
+  font-size:20px;
+  line-height:1.3;
+}
+.screen6-choice p{
+  margin:0 0 9px;
+}
+.screen6-choice em{
+  display:block;
+  color:var(--s6-gold);
+  font-size:23px;
+  line-height:1.27;
+}
+
+.screen6-rule-two{
+  margin-top:22px;
+  margin-bottom:22px;
+}
+.screen6-strengthens{
+  margin:0;
+  font-size:20px;
+  line-height:1.28;
+}
+.screen6-strengthens em{
+  color:var(--s6-gold);
+  font-style:italic;
+}
+
+.screen6-rule-three{
+  margin-top:23px;
+  margin-bottom:20px;
+}
+.screen6-close{
+  margin:0;
+  font-size:20px;
+  line-height:1.28;
+}
+.screen6-close em{
+  color:var(--s6-gold);
+  font-style:italic;
+}
+
+.screen6-continue{
+  margin-top:19px;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  color:var(--s6-gold);
+  text-decoration:none;
+  font-size:17px;
+  font-weight:400;
+}
+.screen6-continue span{
+  font-size:44px;
+  line-height:.84;
+  margin-bottom:8px;
+  font-weight:400;
+}
+.screen6-continue b{
+  font-weight:400;
+}
+
+/* Desktop: background scenery spans edge-to-edge; only content is constrained. */
+@media (min-width:901px){
+  .screen6{
+    min-height:1350px;
+    background-size:100% 100%,100% 100%;
+  }
+}
+
+/* Mobile: preserve the same visual hierarchy while reflowing safely. */
+@media (max-width:700px){
+  .screen6-merge-breathing{height:20px}
+
+  .screen6{
+    min-height:0;
+    background-image:
+      linear-gradient(to bottom,
+        rgba(255,250,240,.32) 0%,
+        rgba(255,250,240,.25) 50%,
+        rgba(255,250,240,.10) 100%),
+      url("assets/screen6/screen6-self-leadership-scenery.png");
+    background-position:center top,center bottom;
+    background-size:100% 100%,auto 100%;
+  }
+
+  .screen6-inner{
+    width:100%;
+    min-height:100svh;
+    padding:45px 22px 34px;
+  }
+
+  .screen6-question{
+    font-size:34px;
+    line-height:1.1;
+    margin-bottom:10px;
+  }
+
+  .screen6-title{
+    font-size:58px;
+    line-height:1.02;
+    margin-bottom:22px;
+  }
+
+  .screen6-rule{
+    width:150px;
+    margin-bottom:22px;
+  }
+
+  .screen6-lead{
+    font-size:23px;
+    line-height:1.3;
+  }
+
+  .screen6-flow{
+    margin-top:48px;
+  }
+
+  .screen6-flow-step{
+    font-size:24px;
+  }
+
+  .screen6-arrow-stack{
+    height:105px;
+  }
+
+  .screen6-arrow-stack b{
+    margin-top:10px;
+  }
+
+  .screen6-arrow-stack span{
+    font-size:42px;
+    margin-top:12px;
+  }
+
+  .screen6-rule-one{
+    margin-top:28px;
+    margin-bottom:21px;
+  }
+
+  .screen6-choice,
+  .screen6-strengthens,
+  .screen6-close{
+    font-size:18px;
+    line-height:1.32;
+  }
+
+  .screen6-choice em{
+    font-size:20px;
+  }
+
+  .screen6-rule-two{
+    margin-top:22px;
+    margin-bottom:20px;
+  }
+
+  .screen6-rule-three{
+    margin-top:22px;
+    margin-bottom:19px;
+  }
+
+  .screen6-continue{
+    margin-top:18px;
+    font-size:17px;
+  }
+
+  .screen6-continue span{
+    font-size:40px;
+  }
+}
+
+@media (max-width:390px){
+  .screen6-inner{
+    padding-left:18px;
+    padding-right:18px;
+  }
+  .screen6-question{font-size:31px}
+  .screen6-title{font-size:52px}
+  .screen6-lead{font-size:21px}
+  .screen6-flow-step{font-size:22px}
+  .screen6-choice,
+  .screen6-strengthens,
+  .screen6-close{font-size:17px}
+}
+
+/* =========================================================
+   SCREEN 5 — APPROVED DESKTOP SCENERY WIDTH CORRECTION ONLY
+   The previous second-layer width cap was min(100vw,1350px).
+   This changes only that scenery width at desktop sizes.
+   ========================================================= */
+@media (min-width:901px){
+  .screen5{
+    background-size:100% 100%,100% 100%;
+  }
+}
+
+/* =========================================================
+   SCREEN 7 — HUMAN CAPABILITIES
+   Isolated addition. Full-width scenery / centered content.
+   ========================================================= */
+.screen7-merge-breathing{
+  width:100%;
+  height:20px;
+  background:#fff;
+}
+.screen7{
+  --s7-navy:#15385d;
+  --s7-gold:#a7742d;
+  --s7-ivory:#fffaf1;
+  position:relative;
+  width:100%;
+  min-height:1350px;
+  overflow:hidden;
+  color:var(--s7-navy);
+  font-family:Georgia,"Times New Roman",serif;
+  text-align:center;
+  background-color:var(--s7-ivory);
+  background-image:
+    linear-gradient(to bottom,
+      rgba(255,250,241,.30) 0%,
+      rgba(255,250,241,.25) 47%,
+      rgba(255,250,241,.20) 68%,
+      rgba(255,250,241,.25) 84%,
+      rgba(255,250,241,.31) 100%),
+    url("assets/screen7/screen7-human-capability-scenery.png");
+  background-repeat:no-repeat,no-repeat;
+  background-position:center top,center bottom;
+  background-size:100% 100%,100% 100%;
+}
+.screen7-inner{
+  width:min(900px,100%);
+  min-height:1350px;
+  margin:0 auto;
+  padding:42px 38px 27px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.screen7-question{
+  margin:0;
+  font-size:37px;
+  line-height:1.09;
+  font-weight:400;
+  letter-spacing:-.01em;
+}
+.screen7-rule{
+  width:170px;
+  display:grid;
+  grid-template-columns:1fr 8px 1fr;
+  align-items:center;
+  gap:8px;
+  margin:18px auto 15px;
+}
+.screen7-rule span{height:1px;background:rgba(167,116,45,.48)}
+.screen7-rule b{width:7px;height:7px;border-radius:50%;background:var(--s7-gold);display:block}
+.screen7-rule-top{margin-top:18px;margin-bottom:12px}
+.screen7-title{
+  color:var(--s7-gold);
+  font-size:60px;
+  line-height:1.02;
+  font-weight:400;
+  letter-spacing:-.015em;
+}
+.screen7-bridge{
+  width:520px;
+  max-width:100%;
+  margin:2px auto 0;
+}
+.screen7-bridge-row{
+  display:grid;
+  grid-template-columns:72px 1fr;
+  align-items:center;
+  gap:15px;
+  text-align:left;
+  min-height:70px;
+}
+.screen7-bridge-icon{
+  width:58px;height:58px;
+  border:1.5px solid rgba(167,116,45,.72);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--s7-gold);
+}
+.screen7-bridge-icon svg,
+.screen7-cap-icon svg,
+.screen7-lotus{
+  fill:none;
+  stroke:currentColor;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.screen7-bridge-icon svg{width:39px;height:39px;stroke-width:1.8}
+.screen7-bridge-row p{margin:0;font-size:22px;line-height:1.2}
+.screen7-bridge-row em{color:var(--s7-gold);font-style:italic}
+.screen7-bridge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--s7-gold);
+  margin:3px auto;
+}
+.screen7-capability-wrap{
+  position:relative;
+  width:520px;
+  height:365px;
+  max-width:100%;
+  margin:18px auto 2px;
+}
+.screen7-orbit{
+  position:absolute;
+  left:50%;top:52%;
+  width:315px;height:268px;
+  transform:translate(-50%,-50%);
+  border:1.5px dashed rgba(167,116,45,.55);
+  border-radius:50%;
+}
+.screen7-cap-center{
+  position:absolute;
+  left:50%;top:53%;
+  transform:translate(-50%,-50%);
+  width:194px;height:194px;
+  border:1.8px solid var(--s7-gold);
+  border-radius:50%;
+  background:rgba(255,250,241,.60);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  line-height:1.05;
+}
+.screen7-lotus{
+  width:47px;height:47px;
+  color:#d7a850;
+  stroke-width:1.8;
+  margin-bottom:7px;
+}
+.screen7-cap{
+  position:absolute;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+}
+.screen7-cap-label{font-size:14px;line-height:1.03;font-weight:700}
+.screen7-cap-icon{
+  width:60px;height:60px;
+  border:1.5px solid rgba(167,116,45,.72);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--s7-gold);
+  background:rgba(255,250,241,.65);
+}
+.screen7-cap-icon svg{width:39px;height:39px;stroke-width:1.8}
+.screen7-cap-icon-navy{color:var(--s7-navy)}
+.screen7-cap-top{left:50%;top:0;transform:translateX(-50%)}
+.screen7-cap-right{right:0;top:84px}
+.screen7-cap-bottom-right{right:34px;bottom:0}
+.screen7-cap-bottom-left{left:47px;bottom:0}
+.screen7-cap-left{left:0;top:84px}
+.screen7-body{margin:0;font-size:20px;line-height:1.25}
+.screen7-body-first{margin-top:28px}
+.screen7-rule-copy{width:170px;margin-top:15px;margin-bottom:13px}
+.screen7-travel{
+  margin:0;
+  color:var(--s7-gold);
+  font-size:21px;
+  line-height:1.2;
+  font-style:italic;
+}
+.screen7-body-final em{color:var(--s7-gold);font-style:italic}
+.screen7-continue{
+  margin-top:17px;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  color:var(--s7-gold);
+  text-decoration:none;
+  font-size:17px;
+  letter-spacing:.12em;
+}
+.screen7-continue span{font-size:42px;line-height:.86;margin-bottom:8px}
+.screen7-continue b{font-weight:400}
+
+@media (min-width:901px){
+  .screen7{background-size:100% 100%,100% 100%}
+}
+
+@media (max-width:700px){
+  .screen7-merge-breathing{height:20px}
+  .screen7{
+    min-height:0;
+    background-image:
+      linear-gradient(to bottom,
+        rgba(255,250,241,.34) 0%,
+        rgba(255,250,241,.28) 48%,
+        rgba(255,250,241,.23) 72%,
+        rgba(255,250,241,.30) 100%),
+      url("assets/screen7/screen7-human-capability-scenery.png");
+    background-position:center top,center bottom;
+    background-size:100% 100%,auto 100%;
+  }
+  .screen7-inner{
+    width:100%;
+    min-height:100svh;
+    padding:40px 20px 32px;
+  }
+  .screen7-question{font-size:31px;line-height:1.1}
+  .screen7-title{font-size:48px;line-height:1.04}
+  .screen7-rule{width:145px}
+  .screen7-bridge{width:100%;max-width:390px}
+  .screen7-bridge-row{grid-template-columns:62px 1fr;gap:12px;min-height:70px}
+  .screen7-bridge-icon{width:52px;height:52px}
+  .screen7-bridge-icon svg{width:34px;height:34px}
+  .screen7-bridge-row p{font-size:18px;line-height:1.23}
+  .screen7-capability-wrap{width:360px;height:330px;margin-top:23px}
+  .screen7-orbit{width:235px;height:220px}
+  .screen7-cap-center{width:155px;height:155px;font-size:22px}
+  .screen7-lotus{width:40px;height:40px}
+  .screen7-cap-label{font-size:11px}
+  .screen7-cap-icon{width:50px;height:50px}
+  .screen7-cap-icon svg{width:32px;height:32px}
+  .screen7-cap-right{right:2px;top:83px}
+  .screen7-cap-left{left:2px;top:83px}
+  .screen7-cap-bottom-right{right:24px}
+  .screen7-cap-bottom-left{left:34px}
+  .screen7-body{font-size:18px;line-height:1.3}
+  .screen7-travel{font-size:19px}
+}
+
+@media (max-width:390px){
+  .screen7-inner{padding-left:16px;padding-right:16px}
+  .screen7-question{font-size:28px}
+  .screen7-title{font-size:43px}
+  .screen7-capability-wrap{width:330px;height:315px}
+  .screen7-orbit{width:215px;height:205px}
+  .screen7-cap-center{width:145px;height:145px;font-size:20px}
+  .screen7-cap-label{font-size:10px}
+  .screen7-cap-icon{width:47px;height:47px}
+  .screen7-cap-bottom-right{right:18px}
+  .screen7-cap-bottom-left{left:27px}
+}
+
+/* =========================================================
+   SCREEN 8 — MEETING LIFE WELL
+   Isolated addition. Locked Screens 1–7 unchanged.
+   Desktop scenery is full-width; content remains centered.
+   ========================================================= */
+.screen8-merge-breathing{
+  width:100%;
+  height:20px;
+  background:#fff;
+}
+
+.screen8{
+  --s8-navy:#15385d;
+  --s8-gold:#a56d22;
+  --s8-ivory:#fffaf1;
+  position:relative;
+  width:100%;
+  min-height:1350px;
+  overflow:hidden;
+  color:var(--s8-navy);
+  font-family:Georgia,"Times New Roman",serif;
+  text-align:center;
+  background-color:var(--s8-ivory);
+  background-image:
+    linear-gradient(to bottom,
+      rgba(255,250,241,.42) 0%,
+      rgba(255,250,241,.28) 33%,
+      rgba(255,250,241,.17) 54%,
+      rgba(255,250,241,.29) 73%,
+      rgba(255,250,241,.72) 100%),
+    url("assets/screen8/screen8-meeting-life-well-scenery.png");
+  background-repeat:no-repeat,no-repeat;
+  background-position:center top,center bottom;
+  background-size:100% 100%,100% 100%;
+}
+
+.screen8-inner{
+  width:min(900px,100%);
+  min-height:1350px;
+  margin:0 auto;
+  padding:48px 34px 30px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.screen8-eyebrow{
+  color:var(--s8-gold);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:20px;
+  line-height:1;
+  letter-spacing:.13em;
+  font-weight:500;
+  margin-bottom:16px;
+}
+
+.screen8-lotus-rule{
+  width:545px;
+  max-width:78%;
+  display:grid;
+  grid-template-columns:1fr 46px 1fr;
+  gap:12px;
+  align-items:center;
+  margin-bottom:27px;
+}
+.screen8-lotus-rule span{
+  height:1px;
+  background:rgba(165,109,34,.47);
+}
+.screen8-lotus-rule svg{
+  width:42px;
+  height:42px;
+  fill:none;
+  stroke:var(--s8-gold);
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.screen8-title{
+  margin:0 0 55px;
+  font-size:83px;
+  line-height:.98;
+  font-weight:400;
+  letter-spacing:-.025em;
+}
+.screen8-title span{
+  color:var(--s8-gold);
+}
+
+.screen8-seasons{
+  position:relative;
+  width:720px;
+  max-width:100%;
+  margin-bottom:54px;
+  padding-left:65px;
+}
+.screen8-season-row{
+  display:grid;
+  grid-template-columns:70px 1fr;
+  gap:22px;
+  align-items:center;
+  text-align:left;
+  min-height:78px;
+}
+.screen8-season-icon{
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--s8-gold);
+}
+.screen8-season-icon svg{
+  width:52px;
+  height:52px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.screen8-season-row p{
+  margin:0;
+  font-size:25px;
+  line-height:1.15;
+}
+.screen8-season-line{
+  position:absolute;
+  left:111px;
+  top:39px;
+  bottom:39px;
+  width:1px;
+  background:rgba(165,109,34,.72);
+}
+.screen8-season-line b{
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--s8-gold);
+  left:50%;
+  bottom:-2px;
+  transform:translateX(-50%);
+}
+
+.screen8-statement-wrap{
+  position:relative;
+  width:675px;
+  max-width:90%;
+  margin:0 auto 30px;
+}
+.screen8-statement{
+  border:1.6px solid var(--s8-gold);
+  border-radius:16px;
+  background:rgba(255,250,241,.74);
+  padding:45px 48px 40px;
+}
+.screen8-statement p{
+  margin:0;
+  font-size:29px;
+  line-height:1.39;
+}
+.screen8-statement em{
+  color:var(--s8-gold);
+  font-style:italic;
+}
+.screen8-card-lotus{
+  position:absolute;
+  left:50%;
+  top:-27px;
+  transform:translateX(-50%);
+  width:70px;
+  height:54px;
+  background:rgba(255,250,241,.94);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+}
+.screen8-card-lotus svg{
+  width:53px;
+  height:53px;
+  fill:none;
+  stroke:var(--s8-gold);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.screen8-spark-rule{
+  width:220px;
+  display:grid;
+  grid-template-columns:1fr 24px 1fr;
+  gap:8px;
+  align-items:center;
+  color:var(--s8-gold);
+  margin:0 auto 14px;
+}
+.screen8-spark-rule span{
+  height:1px;
+  background:rgba(165,109,34,.45);
+}
+.screen8-spark-rule b{
+  font-size:25px;
+  line-height:1;
+  font-weight:400;
+}
+
+.screen8-lower{
+  width:610px;
+  max-width:100%;
+}
+.screen8-lower-row{
+  display:grid;
+  grid-template-columns:72px 1fr;
+  align-items:center;
+  gap:19px;
+  text-align:left;
+  min-height:78px;
+}
+.screen8-lower-icon{
+  width:64px;
+  height:64px;
+  border:1.5px solid rgba(165,109,34,.85);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--s8-gold);
+  background:rgba(255,250,241,.52);
+}
+.screen8-lower-icon svg{
+  width:43px;
+  height:43px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.screen8-lower-row p{
+  margin:0;
+  font-size:23px;
+  line-height:1.2;
+}
+.screen8-lower-strong p{
+  font-weight:700;
+}
+
+.screen8-bottom-rule{
+  width:420px;
+  max-width:70%;
+  display:grid;
+  grid-template-columns:1fr 37px 1fr;
+  gap:10px;
+  align-items:center;
+  margin:17px auto 25px;
+}
+.screen8-bottom-rule span{
+  height:1px;
+  background:rgba(165,109,34,.45);
+}
+.screen8-bottom-rule svg{
+  width:32px;
+  height:32px;
+  fill:none;
+  stroke:var(--s8-gold);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.screen8-continue{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+  color:var(--s8-navy);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:17px;
+  letter-spacing:.18em;
+  font-weight:500;
+}
+.screen8-continue-circle{
+  width:58px;
+  height:58px;
+  border:1.5px solid var(--s8-gold);
+  border-radius:50%;
+  color:var(--s8-gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:39px;
+  line-height:1;
+  margin-bottom:13px;
+}
+.screen8-continue b{
+  font-weight:500;
+}
+
+@media (min-width:901px){
+  .screen8{
+    background-size:100% 100%,100% 100%;
+  }
+}
+
+/* Mobile: Screen 8 only. Locked earlier screens are not touched. */
+@media (max-width:700px){
+  .screen8-merge-breathing{height:20px}
+
+  .screen8{
+    min-height:0;
+    background-image:
+      linear-gradient(to bottom,
+        rgba(255,250,241,.52) 0%,
+        rgba(255,250,241,.34) 33%,
+        rgba(255,250,241,.21) 56%,
+        rgba(255,250,241,.40) 76%,
+        rgba(255,250,241,.78) 100%),
+      url("assets/screen8/screen8-meeting-life-well-scenery.png");
+    background-position:center top,center bottom;
+    background-size:100% 100%,auto 100%;
+  }
+
+  .screen8-inner{
+    width:100%;
+    min-height:100svh;
+    padding:40px 19px 32px;
+  }
+
+  .screen8-eyebrow{
+    font-size:15px;
+    line-height:1.25;
+    letter-spacing:.11em;
+    margin-bottom:14px;
+  }
+
+  .screen8-lotus-rule{
+    width:82%;
+    max-width:350px;
+    grid-template-columns:1fr 39px 1fr;
+    gap:8px;
+    margin-bottom:20px;
+  }
+  .screen8-lotus-rule svg{
+    width:36px;height:36px;
+  }
+
+  .screen8-title{
+    font-size:57px;
+    line-height:1;
+    margin-bottom:39px;
+  }
+
+  .screen8-seasons{
+    width:100%;
+    max-width:420px;
+    padding-left:23px;
+    margin-bottom:43px;
+  }
+  .screen8-season-row{
+    grid-template-columns:58px 1fr;
+    gap:17px;
+    min-height:72px;
+  }
+  .screen8-season-icon{
+    width:50px;height:50px;
+  }
+  .screen8-season-icon svg{
+    width:45px;height:45px;
+  }
+  .screen8-season-row p{
+    font-size:20px;
+    line-height:1.18;
+  }
+  .screen8-season-line{
+    left:82px;
+    top:36px;
+    bottom:36px;
+  }
+
+  .screen8-statement-wrap{
+    width:100%;
+    max-width:430px;
+    margin-bottom:27px;
+  }
+  .screen8-statement{
+    border-radius:14px;
+    padding:42px 24px 32px;
+  }
+  .screen8-statement p{
+    font-size:22px;
+    line-height:1.4;
+  }
+  .screen8-card-lotus{
+    width:62px;height:49px;top:-25px;
+  }
+  .screen8-card-lotus svg{
+    width:47px;height:47px;
+  }
+
+  .screen8-spark-rule{
+    width:180px;
+    margin-bottom:12px;
+  }
+
+  .screen8-lower{
+    width:100%;
+    max-width:430px;
+  }
+  .screen8-lower-row{
+    grid-template-columns:60px 1fr;
+    gap:14px;
+    min-height:76px;
+  }
+  .screen8-lower-icon{
+    width:54px;height:54px;
+  }
+  .screen8-lower-icon svg{
+    width:37px;height:37px;
+  }
+  .screen8-lower-row p{
+    font-size:19px;
+    line-height:1.24;
+  }
+
+  .screen8-bottom-rule{
+    width:72%;
+    max-width:310px;
+    margin-top:18px;
+    margin-bottom:23px;
+  }
+
+  .screen8-continue{
+    font-size:16px;
+  }
+  .screen8-continue-circle{
+    width:54px;height:54px;font-size:36px;
+  }
+}
+
+@media (max-width:390px){
+  .screen8-inner{
+    padding-left:15px;
+    padding-right:15px;
+  }
+  .screen8-eyebrow{font-size:14px}
+  .screen8-title{font-size:51px}
+  .screen8-season-row p{font-size:18px}
+  .screen8-statement p{font-size:20px}
+  .screen8-lower-row p{font-size:18px}
+}
+
+/* =========================================================
+   SCREEN 8 — MOBILE REFINEMENTS v2
+   Only approved changes:
+   - cleaner boxed-message wrapping
+   - rebalance lower icon/text rows
+   - icons refined in HTML above
+   ========================================================= */
+@media (max-width:700px){
+  .screen8-statement{
+    padding:40px 28px 32px;
+  }
+
+  .screen8-statement p{
+    font-size:21px;
+    line-height:1.36;
+  }
+
+  /* Ignore desktop-authored line breaks on mobile so the sentence
+     can wrap naturally within the available width. */
+  .screen8-statement p br{
+    display:none;
+  }
+
+  .screen8-lower{
+    max-width:440px;
+  }
+
+  .screen8-lower-row{
+    grid-template-columns:66px minmax(0,1fr);
+    gap:16px;
+    align-items:center;
+    min-height:84px;
+  }
+
+  .screen8-lower-icon{
+    width:58px;
+    height:58px;
+  }
+
+  .screen8-lower-icon svg{
+    width:39px;
+    height:39px;
+  }
+
+  .screen8-lower-row p{
+    font-size:18.5px;
+    line-height:1.24;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+
+  .screen8-lower-strong p{
+    font-size:19px;
+    line-height:1.24;
+    font-weight:700;
+  }
+}
+
+@media (max-width:390px){
+  .screen8-statement{
+    padding-left:22px;
+    padding-right:22px;
+  }
+
+  .screen8-statement p{
+    font-size:19px;
+    line-height:1.38;
+  }
+
+  .screen8-lower-row{
+    grid-template-columns:60px minmax(0,1fr);
+    gap:13px;
+  }
+
+  .screen8-lower-icon{
+    width:54px;
+    height:54px;
+  }
+
+  .screen8-lower-row p,
+  .screen8-lower-strong p{
+    font-size:17.5px;
+  }
+}
+
+/* =========================================================
+   SCREEN 8 — MOBILE-ONLY REFINEMENT v3
+   Desktop remains locked and unchanged.
+   Only:
+   1) move lower icon/text groups slightly inward
+   2) give lower text column more usable width for cleaner wrapping
+   ========================================================= */
+@media (max-width:700px){
+  .screen8-lower{
+    width:100%;
+    max-width:460px;
+    padding:0 10px;
+  }
+
+  .screen8-lower-row{
+    grid-template-columns:58px minmax(0,1fr);
+    gap:14px;
+    padding-left:8px;
+    padding-right:2px;
+  }
+
+  .screen8-lower-icon{
+    width:54px;
+    height:54px;
+  }
+
+  .screen8-lower-row p{
+    font-size:18px;
+    line-height:1.22;
+  }
+
+  .screen8-lower-strong p{
+    font-size:18.5px;
+    line-height:1.22;
+  }
+}
+
+@media (max-width:390px){
+  .screen8-lower{
+    padding-left:6px;
+    padding-right:6px;
+  }
+
+  .screen8-lower-row{
+    grid-template-columns:56px minmax(0,1fr);
+    gap:12px;
+    padding-left:6px;
+  }
+
+  .screen8-lower-row p,
+  .screen8-lower-strong p{
+    font-size:17px;
+    line-height:1.22;
+  }
+}
+
+
+
+/* SCREEN 9 ONLY — Screens 1–8 remain untouched */
+.screen9{position:relative;min-height:100vh;overflow:hidden;background:#fffaf1;color:#0b315d;isolation:isolate}
+.screen9-bg{position:absolute;inset:0;z-index:-2;background:url("assets/screen9/screen9-inward-clarity-scenery.png") center/cover no-repeat}
+.screen9-bg:after{content:"";position:absolute;inset:0;background:rgba(255,250,241,.10)}
+.screen9-content{width:min(1160px,calc(100% - 64px));margin:auto;padding:54px 0 40px;text-align:center}
+.screen9-kicker{margin:0;color:#a8660d;font:500 22px/1 Arial,sans-serif;letter-spacing:.26em}
+.screen9-lotus-rule,.screen9-diamond-rule,.screen9-mini-rule{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;color:#b87517}
+.screen9-lotus-rule{width:min(520px,62%);gap:14px;margin:22px auto 6px;font-size:35px}
+.screen9-lotus-rule span,.screen9-diamond-rule span,.screen9-mini-rule span{height:1px;background:currentColor;opacity:.65}
+.screen9-title{margin:0;color:#082d5d;font:400 clamp(70px,8vw,124px)/.92 Georgia,serif;letter-spacing:-.045em}
+.screen9-title span{color:#b97718}
+.screen9-lead{max-width:1080px;margin:45px auto 0;font:400 clamp(26px,2.4vw,38px)/1.28 Georgia,serif}
+.screen9 em{color:#a9660d;font-style:italic}
+.screen9-diamond-rule{width:210px;gap:10px;margin:30px auto;font-size:8px}
+.screen9-story-copy{width:min(1060px,92%);margin:auto;text-align:left;font:400 18px/1.52 Arial,sans-serif;color:#102f58}
+.screen9-story-copy p{margin:0 0 18px}
+.screen9-insights{width:min(1030px,92%);margin:78px auto 0;display:grid;grid-template-columns:1fr 1px 1fr;gap:46px;align-items:center}
+.screen9-round-icon{width:90px;height:90px;margin:0 auto 14px;border:1.7px solid #b87517;border-radius:50%;display:grid;place-items:center;color:#b87517;font:42px Georgia,serif}
+.screen9-tree{font-size:38px}
+.screen9-insight h3{margin:0;font:400 27px/1.15 Georgia,serif}
+.screen9-mini-rule{width:120px;gap:5px;margin:13px auto 17px;font-size:7px}
+.screen9-insight p{max-width:390px;margin:auto;font:400 17px/1.55 Arial,sans-serif;color:#102f58}
+.screen9-insight-divider{width:1px;height:205px;background:#c99a5d;position:relative}
+.screen9-insight-divider b{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:7px 0;background:#f5ecdd;color:#b87517;font-size:8px}
+.screen9-today-card{width:min(1080px,94%);margin:62px auto 0;min-height:168px;border:1.5px solid #b87517;border-radius:16px;background:rgba(255,251,244,.78);display:grid;grid-template-columns:110px 1fr;gap:24px;align-items:center;padding:25px 42px 25px 30px;text-align:left}
+.screen9-sprout{color:#b87517;font:72px Georgia,serif;text-align:center}
+.screen9-today-card p{margin:0;font:400 23px/1.42 Georgia,serif}
+.screen9-story-link{width:max-content;margin:12px auto 0;display:flex;flex-direction:column;align-items:center;color:#0b315d;text-decoration:none}
+.screen9-arrow-circle{width:54px;height:54px;border:1.5px solid #b87517;border-radius:50%;display:grid;place-items:center;color:#b87517;font:29px Arial,sans-serif}
+.screen9-story-label{margin-top:8px;font:600 18px Arial,sans-serif;letter-spacing:.22em}
+
+@media(max-width:700px){
+.screen9-content{width:100%;padding:40px 22px 34px}
+.screen9-kicker{font-size:15px;letter-spacing:.24em}
+.screen9-lotus-rule{width:78%;margin-top:17px;font-size:27px}
+.screen9-title{font-size:clamp(50px,15vw,72px);line-height:.96}
+.screen9-lead{margin-top:28px;font-size:23px;line-height:1.34}
+.screen9-diamond-rule{width:160px;margin:24px auto}
+.screen9-story-copy{width:100%;font-size:16.5px;line-height:1.52}
+.screen9-insights{width:100%;margin-top:52px;grid-template-columns:1fr;gap:32px}
+.screen9-insight-divider{width:72%;height:1px;margin:auto}
+.screen9-insight-divider b{top:50%;padding:0 8px}
+.screen9-round-icon{width:80px;height:80px}
+.screen9-insight h3{font-size:24px}
+.screen9-insight p{font-size:16.5px;line-height:1.5}
+.screen9-today-card{width:100%;margin-top:46px;min-height:0;grid-template-columns:56px minmax(0,1fr);gap:14px;padding:24px 18px 24px 14px;border-radius:14px}
+.screen9-sprout{font-size:49px}
+.screen9-today-card p{font-size:19px;line-height:1.38}
+.screen9-story-link{margin-top:16px}
+.screen9-arrow-circle{width:50px;height:50px}
+.screen9-story-label{font-size:16px}
+}
+@media(max-width:390px){
+.screen9-content{padding-left:18px;padding-right:18px}
+.screen9-title{font-size:50px}
+.screen9-lead{font-size:21px}
+.screen9-story-copy{font-size:16px}
+.screen9-today-card{grid-template-columns:48px minmax(0,1fr);gap:11px;padding-left:11px;padding-right:14px}
+.screen9-today-card p{font-size:18px}
+}
+
+/* =========================================================
+   SCREEN 9 — REFERENCE-FIDELITY REFINEMENT v2
+   Screen 9 only. Screens 1–8 remain untouched.
+   ========================================================= */
+
+/* Top lotus ornament — exact thin gold line treatment */
+.screen9-lotus-rule{
+  grid-template-columns:1fr 46px 1fr;
+  gap:12px;
+  font-size:initial;
+}
+.screen9-lotus-rule svg{
+  width:40px;
+  height:40px;
+  justify-self:center;
+  fill:none;
+  stroke:#b87517;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* Center the narrative copy for continuity with the rest of the site */
+.screen9-story-copy{
+  text-align:center;
+  max-width:1060px;
+}
+.screen9-story-copy p{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Faithful thin gold insight icons */
+.screen9-insight-icon{
+  width:92px;
+  height:92px;
+  margin:0 auto 14px;
+  color:#b87517;
+}
+.screen9-insight-icon svg{
+  width:100%;
+  height:100%;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* Match both insight statements to the same optical width/line rhythm */
+.screen9-insight p{
+  width:100%;
+  max-width:405px;
+  min-height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1.52;
+}
+.screen9-insight:first-child p{
+  max-width:390px;
+}
+.screen9-insight:last-child p{
+  max-width:390px;
+}
+
+/* Refined botanical branch in the lower card */
+.screen9-branch-icon{
+  color:#b87517;
+  width:72px;
+  height:116px;
+  justify-self:center;
+}
+.screen9-branch-icon svg{
+  width:100%;
+  height:100%;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+@media(max-width:700px){
+  .screen9-lotus-rule{
+    grid-template-columns:1fr 34px 1fr;
+    gap:8px;
+  }
+  .screen9-lotus-rule svg{
+    width:30px;
+    height:30px;
+  }
+  .screen9-story-copy{
+    text-align:center;
+  }
+  .screen9-insight-icon{
+    width:82px;
+    height:82px;
+  }
+  .screen9-insight p{
+    min-height:0;
+    max-width:390px;
+  }
+  .screen9-branch-icon{
+    width:54px;
+    height:92px;
+  }
+}
+
+@media(max-width:390px){
+  .screen9-branch-icon{
+    width:46px;
+    height:82px;
+  }
+}
+
+/* =========================================================
+   APPROVED ICON REMOVAL — SCREENS 8 & 9 ONLY
+   No other locked content or styling changed.
+   ========================================================= */
+
+/* Screen 8: final two statements no longer reserve an icon column. */
+.screen8-lower-row,
+.screen8-lower-row.screen8-lower-strong{
+  grid-template-columns:1fr;
+  gap:0;
+  text-align:center;
+}
+.screen8-lower-row p,
+.screen8-lower-strong p{
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Screen 9: insight statements remain centered without top icons. */
+.screen9-insight{
+  padding-top:0;
+}
+
+/* Screen 9: final boxed statement no longer reserves a botanical-icon column. */
+.screen9-today-card{
+  grid-template-columns:1fr;
+  gap:0;
+  text-align:center;
+  padding-left:42px;
+  padding-right:42px;
+}
+.screen9-today-card p{
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@media(max-width:700px){
+  .screen8-lower-row,
+  .screen8-lower-row.screen8-lower-strong{
+    grid-template-columns:1fr;
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .screen9-today-card{
+    grid-template-columns:1fr;
+    gap:0;
+    padding-left:20px;
+    padding-right:20px;
+  }
+}
+
+@media(max-width:390px){
+  .screen9-today-card{
+    grid-template-columns:1fr;
+    padding-left:16px;
+    padding-right:16px;
+  }
+}
+
+/* =========================================================
+   FINAL BUILD — WHITE SPACE BETWEEN SCREEN 8 AND SCREEN 9 ONLY
+   ========================================================= */
+.screen9-merge-breathing{
+  width:100%;
+  height:20px;
+  background:#fff;
+}
+
+/* =========================================================
+   FINAL TRUE FIX — SCREEN 4 MOBILE MAIN HEADLINE ONLY
+   ========================================================= */
+@media (max-width:700px){
+  .screen4-mobile-title-fix{
+    width:100% !important;
+    max-width:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    font-size:clamp(38px,9.4vw,48px) !important;
+    line-height:1.04 !important;
+  }
+}
+
+
+
+/* SCREEN 9 — DESKTOP STORY TEXT WIDTH ONLY */
+@media (min-width:701px){
+  .screen9-story-copy{
+    width:800px;
+    max-width:calc(100% - 80px);
+  }
+}
+
+/* =========================================================
+   SCREEN 10 — WHAT IS IT LIKE TO WORK TOGETHER?
+   Screens 1–9 remain locked and unchanged.
+   ========================================================= */
+.screen10-merge-breathing,
+.screen11-merge-breathing{
+  width:100%;
+  height:20px;
+  background:#fff;
+}
+
+.screen10{
+  --navy:#10355f;
+  --gold:#a96e19;
+  position:relative;
+  width:100%;
+  min-height:1350px;
+  overflow:hidden;
+  color:var(--navy);
+  font-family:Georgia,"Times New Roman",serif;
+  text-align:center;
+  background:
+    linear-gradient(to bottom,
+      rgba(255,252,239,.98) 0%,
+      rgba(255,252,239,.98) 42%,
+      rgba(255,252,239,.88) 57%,
+      rgba(255,252,239,.58) 72%,
+      rgba(255,252,239,.30) 100%),
+    url("assets/screen10/screen10-work-together-scenery.jpg") center bottom/100% 61% no-repeat,
+    #FFFCEF;
+}
+.screen10-inner{
+  width:min(900px,100%);
+  min-height:1350px;
+  margin:0 auto;
+  padding:42px 46px 34px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.screen10-lotus-rule,
+.screen10-bottom-lotus-rule{
+  display:grid;
+  grid-template-columns:1fr 42px 1fr;
+  align-items:center;
+  gap:10px;
+  width:245px;
+  color:var(--gold);
+}
+.screen10-lotus-rule{margin-bottom:20px}
+.screen10-lotus-rule:before,
+.screen10-lotus-rule:after,
+.screen10-bottom-lotus-rule span{
+  content:"";
+  height:1px;
+  background:rgba(169,110,25,.55);
+}
+.screen10-lotus-rule svg,
+.screen10-bottom-lotus-rule svg{
+  width:38px;height:38px;
+  fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.screen10-title{
+  margin:0;
+  font-size:69px;
+  line-height:1.02;
+  font-weight:400;
+  letter-spacing:-.025em;
+}
+.screen10-dot-rule,
+.screen11-dot-rule{
+  display:grid;
+  grid-template-columns:1fr 8px 1fr;
+  gap:8px;
+  align-items:center;
+  width:185px;
+  margin:25px auto 22px;
+}
+.screen10-dot-rule span,
+.screen11-dot-rule span{
+  height:1px;background:rgba(169,110,25,.48);
+}
+.screen10-dot-rule b,
+.screen11-dot-rule b{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);display:block;
+}
+.screen10-promise p{margin:0}
+.screen10-promise p:first-child{
+  font-size:33px;
+  line-height:1.15;
+}
+.screen10-promise p:last-child{
+  margin-top:5px;
+  color:var(--gold);
+  font-size:35px;
+  line-height:1.15;
+}
+.screen10-intro{
+  margin:38px 0 41px;
+  font-size:23px;
+  line-height:1.42;
+}
+.screen10-intro em{
+  color:var(--gold);
+  font-style:normal;
+}
+.screen10-columns{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  margin-top:2px;
+}
+.screen10-column{
+  padding:0 25px;
+  min-height:315px;
+}
+.screen10-column + .screen10-column{
+  border-left:1px solid rgba(169,110,25,.45);
+}
+.screen10-icon{
+  width:95px;height:95px;
+  margin:0 auto 16px;
+  color:var(--navy);
+}
+.screen10-icon svg{
+  width:100%;height:100%;
+  fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.screen10-icon circle:first-child{
+  stroke:#b77920;
+}
+.screen10-column h3{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:19px;
+  line-height:1.12;
+  letter-spacing:.05em;
+}
+.screen10-mini-rule{
+  width:82px;
+  display:grid;
+  grid-template-columns:1fr 8px 1fr;
+  gap:5px;
+  align-items:center;
+  margin:13px auto 15px;
+  color:var(--gold);
+}
+.screen10-mini-rule span{
+  height:1px;background:rgba(169,110,25,.45);
+}
+.screen10-mini-rule b{font-size:8px}
+.screen10-column p{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+}
+.screen10-quote-rule{
+  width:360px;
+  max-width:78%;
+  display:grid;
+  grid-template-columns:1fr 38px 1fr;
+  gap:12px;
+  align-items:center;
+  margin:34px auto 18px;
+  color:var(--gold);
+}
+.screen10-quote-rule span{
+  height:1px;background:rgba(169,110,25,.44);
+}
+.screen10-quote-rule b{
+  font:42px/1 Georgia,serif;
+}
+.screen10-quote p{
+  margin:0;
+  font-size:27px;
+  line-height:1.23;
+}
+.screen10-quote p:last-child{
+  color:var(--gold);
+  margin-top:4px;
+}
+.screen10-bottom-lotus-rule{
+  width:350px;
+  max-width:70%;
+  margin:28px auto 19px;
+}
+.screen10-continue{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  color:var(--navy);
+  text-decoration:none;
+}
+.screen10-continue b{
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:17px;
+  letter-spacing:.14em;
+  font-weight:500;
+}
+.screen10-arrow-circle{
+  width:58px;height:58px;
+  border:1.5px solid var(--gold);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  font-size:38px;
+  line-height:1;
+}
+
+/* =========================================================
+   SCREEN 11 — BEGIN WHERE YOU ARE
+   ========================================================= */
+.screen11{
+  --navy:#10355f;
+  --gold:#a96e19;
+  position:relative;
+  width:100%;
+  min-height:1350px;
+  overflow:hidden;
+  color:var(--navy);
+  font-family:Georgia,"Times New Roman",serif;
+  text-align:center;
+  background:
+    linear-gradient(to bottom,
+      rgba(255,250,241,.985) 0%,
+      rgba(255,250,241,.985) 58%,
+      rgba(255,250,241,.88) 72%,
+      rgba(255,250,241,.47) 100%),
+    url("assets/screen11/screen11-begin-scenery.jpg") center bottom/100% 39% no-repeat,
+    #fffaf1;
+}
+.screen11-inner{
+  width:min(900px,100%);
+  min-height:1350px;
+  margin:0 auto;
+  padding:39px 48px 30px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.screen11-lotus-rule{
+  width:190px;
+  display:grid;
+  grid-template-columns:1fr 38px 1fr;
+  gap:9px;
+  align-items:center;
+  color:var(--gold);
+  margin-bottom:22px;
+}
+.screen11-lotus-rule:before,
+.screen11-lotus-rule:after{
+  content:"";
+  height:1px;
+  background:rgba(169,110,25,.48);
+}
+.screen11-lotus-rule svg{
+  width:34px;height:34px;
+  fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.screen11-kicker{
+  margin:0 0 8px;
+  color:var(--gold);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:17px;
+  letter-spacing:.13em;
+  font-weight:500;
+}
+.screen11-title{
+  margin:0;
+  font-size:59px;
+  line-height:1.02;
+  font-weight:400;
+}
+.screen11-dot-rule{
+  --gold:#a96e19;
+  width:160px;
+  margin:20px auto 28px;
+}
+.screen11-cards{
+  width:660px;
+  max-width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+.screen11-card{
+  min-height:215px;
+  display:grid;
+  grid-template-columns:200px 1fr;
+  background:rgba(255,252,247,.78);
+  border:1px solid rgba(16,53,95,.08);
+  border-radius:11px;
+  box-shadow:0 5px 18px rgba(75,56,33,.10);
+  overflow:hidden;
+}
+.screen11-card-icon-wrap{
+  position:relative;
+  display:grid;
+  place-items:center;
+  border-right:1px solid rgba(169,110,25,.38);
+}
+.screen11-wash{
+  position:absolute;
+  width:142px;height:70px;
+  border-radius:50%;
+  filter:blur(1px);
+  opacity:.38;
+}
+.screen11-wash-peach{background:#ead0aa}
+.screen11-wash-blue{background:#c9d8df}
+.screen11-wash-sage{background:#d6dcc8}
+.screen11-card-icon{
+  position:relative;
+  z-index:2;
+  width:100px;height:100px;
+  color:var(--navy);
+}
+.screen11-card-icon svg{
+  width:100%;height:100%;
+  fill:none;stroke:currentColor;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.screen11-card-icon svg circle:first-child{
+  stroke:#b77920;
+}
+.screen11-card-copy{
+  padding:25px 32px 22px 36px;
+  text-align:left;
+}
+.screen11-card-copy h3{
+  margin:0;
+  font-size:26px;
+  line-height:1.05;
+  font-weight:400;
+}
+.screen11-sub{
+  margin:8px 0 0!important;
+  color:var(--gold);
+  font:italic 19px/1.15 Georgia,serif!important;
+}
+.screen11-card-dot{
+  color:var(--gold);
+  font-size:23px;
+  line-height:1;
+  margin:10px 0 7px;
+  text-align:center;
+}
+.screen11-card-copy > p:last-child{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px;
+  line-height:1.54;
+}
+.screen11-leaf-rule{
+  width:205px;
+  display:grid;
+  grid-template-columns:1fr 28px 1fr;
+  gap:9px;
+  align-items:center;
+  color:var(--gold);
+  margin:31px auto 15px;
+}
+.screen11-leaf-rule span{
+  height:1px;background:rgba(169,110,25,.45);
+}
+.screen11-leaf-rule b{
+  font:29px/1 Georgia,serif;
+  transform:rotate(-25deg);
+}
+.screen11-doorways{
+  margin:0;
+  font-size:22px;
+  line-height:1.42;
+}
+.screen11-doorways em{
+  color:var(--gold);
+}
+.screen11-dot-rule-low{
+  margin:17px auto 17px;
+  width:120px;
+}
+.screen11-cta{
+  display:inline-block;
+  min-width:470px;
+  max-width:90%;
+  padding:14px 24px 13px;
+  border-radius:10px;
+  color:#fff;
+  text-decoration:none;
+  background:linear-gradient(180deg,#bd852f,#a66b17);
+  box-shadow:0 4px 10px rgba(84,55,16,.20);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px;
+  letter-spacing:.11em;
+}
+
+/* Desktop scenery remains full-width at all effective viewport sizes. */
+@media (min-width:701px){
+  .screen10,
+  .screen11{
+    background-size:100% 100%,100% 61%,auto;
+  }
+  .screen11{
+    background-size:100% 100%,100% 39%,auto;
+  }
+}
+
+/* =========================================================
+   MOBILE — SCREENS 10 & 11 ONLY
+   ========================================================= */
+@media (max-width:700px){
+
+  .screen10,
+  .screen11{
+    min-height:0;
+  }
+
+  .screen10{
+    background:
+      linear-gradient(to bottom,
+        rgba(255,252,239,.99) 0%,
+        rgba(255,252,239,.98) 44%,
+        rgba(255,252,239,.87) 61%,
+        rgba(255,252,239,.46) 100%),
+      url("assets/screen10/screen10-work-together-scenery.jpg") center bottom/auto 50% no-repeat,
+      #FFFCEF;
+  }
+  .screen10-inner{
+    width:100%;
+    min-height:100svh;
+    padding:38px 20px 32px;
+  }
+  .screen10-title{
+    font-size:48px;
+    line-height:1.02;
+  }
+  .screen10-dot-rule{margin:21px auto 19px}
+  .screen10-promise p:first-child{
+    font-size:26px;
+  }
+  .screen10-promise p:last-child{
+    font-size:28px;
+    line-height:1.18;
+  }
+  .screen10-intro{
+    margin:29px 0 30px;
+    font-size:19px;
+    line-height:1.4;
+  }
+  .screen10-desktop-br{display:none}
+  .screen10-columns{
+    grid-template-columns:1fr;
+    width:100%;
+    max-width:420px;
+    gap:25px;
+  }
+  .screen10-column{
+    padding:0 18px 23px;
+    min-height:0;
+  }
+  .screen10-column + .screen10-column{
+    border-left:0;
+    border-top:1px solid rgba(169,110,25,.38);
+    padding-top:28px;
+  }
+  .screen10-icon{
+    width:82px;height:82px;
+    margin-bottom:13px;
+  }
+  .screen10-column h3{
+    font-size:18px;
+  }
+  .screen10-column p{
+    font-size:16px;
+    line-height:1.5;
+  }
+  .screen10-quote-rule{
+    margin-top:22px;
+  }
+  .screen10-quote p{
+    font-size:24px;
+  }
+  .screen10-bottom-lotus-rule{
+    margin-top:24px;
+  }
+
+  .screen11{
+    background:
+      linear-gradient(to bottom,
+        rgba(255,250,241,.99) 0%,
+        rgba(255,250,241,.985) 67%,
+        rgba(255,250,241,.84) 78%,
+        rgba(255,250,241,.43) 100%),
+      url("assets/screen11/screen11-begin-scenery.jpg") center bottom/auto 29% no-repeat,
+      #fffaf1;
+  }
+  .screen11-inner{
+    width:100%;
+    min-height:100svh;
+    padding:37px 18px 31px;
+  }
+  .screen11-kicker{
+    font-size:14px;
+    line-height:1.25;
+    letter-spacing:.11em;
+  }
+  .screen11-title{
+    font-size:46px;
+    line-height:1.04;
+  }
+  .screen11-cards{
+    width:100%;
+    max-width:450px;
+    gap:19px;
+  }
+  .screen11-card{
+    min-height:0;
+    grid-template-columns:105px minmax(0,1fr);
+    border-radius:10px;
+  }
+  .screen11-card-icon-wrap{
+    min-height:205px;
+  }
+  .screen11-wash{
+    width:100px;height:58px;
+  }
+  .screen11-card-icon{
+    width:78px;height:78px;
+  }
+  .screen11-card-copy{
+    padding:22px 17px 20px 20px;
+  }
+  .screen11-card-copy h3{
+    font-size:21px;
+    line-height:1.08;
+  }
+  .screen11-sub{
+    font-size:17px!important;
+    line-height:1.18!important;
+  }
+  .screen11-card-copy > p:last-child{
+    font-size:15.5px;
+    line-height:1.47;
+  }
+  .screen11-desktop-br{display:none}
+  .screen11-leaf-rule{
+    margin-top:29px;
+  }
+  .screen11-doorways{
+    font-size:19px;
+    line-height:1.4;
+    max-width:430px;
+  }
+  .screen11-cta{
+    min-width:0;
+    width:min(390px,92%);
+    font-size:14px;
+    line-height:1.25;
+  }
+}
+
+@media (max-width:390px){
+  .screen10-inner,
+  .screen11-inner{
+    padding-left:15px;
+    padding-right:15px;
+  }
+  .screen10-title{font-size:43px}
+  .screen10-promise p:first-child{font-size:24px}
+  .screen10-promise p:last-child{font-size:26px}
+  .screen10-intro{font-size:18px}
+  .screen10-quote p{font-size:22px}
+
+  .screen11-title{font-size:42px}
+  .screen11-card{
+    grid-template-columns:92px minmax(0,1fr);
+  }
+  .screen11-card-icon{width:70px;height:70px}
+  .screen11-card-copy{padding-left:15px;padding-right:12px}
+  .screen11-card-copy h3{font-size:19px}
+  .screen11-sub{font-size:16px!important}
+  .screen11-card-copy > p:last-child{font-size:14.5px}
+  .screen11-doorways{font-size:18px}
+}
+
+/* =========================================================
+   SCREENS 9–11 FINAL COLOR / SCREEN 11 ICON REFINEMENT
+   Only approved corrections.
+   ========================================================= */
+
+/* Screen 11 card icons: faithful thin-line treatment */
+.screen11-card-icon svg{
+  fill:none;
+  stroke:var(--navy);
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.screen11-card-icon svg > circle:first-child{
+  stroke:#b77920;
+}
+
+/* Correct botanical gold divider above "Different doorways." */
+.screen11-leaf-rule{
+  grid-template-columns:1fr 38px 1fr;
+  width:205px;
+}
+.screen11-leaf-rule svg{
+  width:34px;
+  height:24px;
+  justify-self:center;
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.screen11-leaf-rule span{
+  height:1px;
+  background:rgba(169,110,25,.45);
+}
+
+/* =========================================================
+   SCREEN 11 — FINAL TWO APPROVED FIXES ONLY
+   ========================================================= */
+
+/* Standard gold line–dot–line divider above "Different doorways." */
+.screen11-doorways-divider{
+  width:205px;
+  display:grid;
+  grid-template-columns:1fr 8px 1fr;
+  gap:8px;
+  align-items:center;
+  margin:31px auto 15px;
+}
+.screen11-doorways-divider span{
+  height:1px;
+  background:rgba(169,110,25,.45);
+}
+.screen11-doorways-divider b{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--gold);
+  display:block;
+}
+
+/* =========================================================
+   SCREEN 9 — APPROVED DESKTOP WRAP REFINEMENT ONLY
+   Shortens the first displayed line by narrowing the existing
+   narrative text measure; wording and mobile remain unchanged.
+   ========================================================= */
+@media (min-width: 901px){
+  .screen9-story{
+    max-width: 1080px;
+    width: 82%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+/* =========================================================
+   SCREEN 9 — FEATURED OPENING STATEMENT DESKTOP WIDTH ONLY
+   Correct target: .screen9-lead
+   ========================================================= */
+@media (min-width:901px){
+  .screen9-lead{
+    max-width:850px;
+  }
+}
+
+/* =========================================================
+   SCREEN 9 — DESKTOP NARRATIVE LEFT-ALIGN TEST ONLY
+   Four story paragraphs only. Everything else unchanged.
+   ========================================================= */
+@media (min-width:701px){
+  .screen9-story-copy{
+    text-align:left;
+  }
+  .screen9-story-copy p{
+    text-align:left;
+  }
+}
+
+/* =========================================================
+   BOX / CARD TEXT ALIGNMENT REFINEMENT
+   Design rule: center the message; left-align the explanation.
+   ========================================================= */
+
+/* Screen 11 service cards: explanatory card copy remains/readably left aligned. */
+.screen11-card-copy,
+.screen11-card-copy p{
+  text-align:left;
+}
+
+/* Screen 9 final boxed statement is a short concluding message, so it stays centered. */
+.screen9-today-card,
+.screen9-today-card p{
+  text-align:center;
+}
+
+/* Preserve all short statement / quote-style boxes elsewhere as originally designed. */
+
+/* =========================================================
+   SITE-WIDE BOX / CARD TEXT ALIGNMENT RULE
+   Approved rule: explanatory text inside boxes/cards is left-aligned.
+   No non-box content is changed.
+   ========================================================= */
+
+/* SCREEN 3 — the two GAP cards */
+.friction-module .gap-card{
+  text-align:left !important;
+}
+.friction-module .gap-card h3,
+.friction-module .gap-card p{
+  text-align:left !important;
+}
+/* Keep the decorative icon itself centered; only text alignment changes. */
+.friction-module .gap-card .card-icon{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* SCREEN 3 — final "what does how we operate mean?" box */
+.friction-module .meaning-box{
+  text-align:left !important;
+}
+.friction-module .meaning-box > div:last-child{
+  text-align:left !important;
+}
+
+/* SCREEN 8 — bordered Inward Clarity explanatory statement */
+.screen8-statement,
+.screen8-statement p{
+  text-align:left !important;
+}
+
+/* SCREEN 9 — final bordered explanatory statement */
+.screen9-today-card,
+.screen9-today-card p{
+  text-align:left !important;
+}
+
+/* SCREEN 11 — all three coaching cards */
+.screen11-card-copy,
+.screen11-card-copy h3,
+.screen11-card-copy p,
+.screen11-card-copy .screen11-sub{
+  text-align:left !important;
+}
+
+/* Card dots have been removed from Screen 11 HTML. */
+.screen11-card-dot{
+  display:none !important;
+}
+
+/* =========================================================
+   SCREEN 3 — INTERNAL FRICTION CARD TITLES ONLY
+   Titles centered; explanatory body copy remains left-aligned.
+   ========================================================= */
+.friction-module .gap-card h3{
+  text-align:center !important;
+}
+
+/* =========================================================
+   SCREEN 3 — INTERNAL FRICTION BODY TEXT INSET ONLY
+   Equal 18px inset; titles remain centered.
+   ========================================================= */
+.friction-module .gap-card p{
+  padding-left:18px !important;
+  padding-right:18px !important;
+  box-sizing:border-box;
+}
+
+/* =========================================================
+   SCREEN 3 — INTERNAL FRICTION CARDS RECENTERED
+   Titles and body copy centered. No other changes.
+   ========================================================= */
+.friction-module .gap-card p{
+  text-align:center !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+
+.screen12-merge-breathing{width:100%;height:20px;background:#fff}
+.screen12{
+  --navy:#10355f;--gold:#a96e19;--ivory:#fffaf1;
+  width:100%;min-height:1350px;overflow:hidden;color:var(--navy);
+  font-family:Georgia,"Times New Roman",serif;text-align:center;
+  background:
+    linear-gradient(to bottom,rgba(255,250,241,.99) 0%,rgba(255,250,241,.99) 72%,rgba(255,250,241,.88) 82%,rgba(255,250,241,.55) 100%),
+    url("assets/screen12/screen12-work-with-me-scenery.jpg") center bottom/100% 22% no-repeat,
+    var(--ivory);
+}
+.screen12-inner{width:min(1120px,100%);min-height:1350px;margin:auto;padding:36px 24px 0}
+.screen12-top-rule,.screen12-bottom-rule{width:180px;margin:0 auto 14px;display:grid;grid-template-columns:1fr 36px 1fr;align-items:center;gap:8px;color:var(--gold)}
+.screen12-top-rule span,.screen12-bottom-rule span{height:1px;background:rgba(169,110,25,.45)}
+.screen12-top-rule b,.screen12-bottom-rule b{font:26px/1 Georgia,serif;font-weight:400}
+.screen12-kicker{margin:0 0 8px;color:var(--gold);font:500 17px Arial,sans-serif;letter-spacing:.12em}
+.screen12-title{margin:0;font-size:57px;line-height:1.02;font-weight:400}
+.screen12-dot-rule{width:145px;margin:19px auto 17px;display:grid;grid-template-columns:1fr 8px 1fr;gap:8px;align-items:center}
+.screen12-dot-rule span{height:1px;background:rgba(169,110,25,.45)}
+.screen12-dot-rule b{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.screen12-subtitle{margin:0 0 28px;font-size:22px}
+.screen12-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.screen12-card{min-height:655px;padding:25px 24px 22px;text-align:left;background:rgba(255,252,247,.80);border:1px solid rgba(16,53,95,.08);border-radius:10px;box-shadow:0 5px 18px rgba(75,56,33,.09);display:flex;flex-direction:column}
+.screen12-card-icon{width:96px;height:96px;margin:0 auto 13px}
+.screen12-card-icon svg{width:100%;height:100%;fill:none;stroke:var(--navy);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.screen12-card-icon svg>circle:first-child{stroke:#b77920}
+.screen12-card h3{text-align:center;margin:0;font-size:21px;font-weight:400}
+.screen12-card-sub{text-align:center;margin:7px 0 18px;color:var(--gold);font-size:16px;font-style:italic}
+.screen12-card-copy{margin:0;font:14.5px/1.55 Arial,sans-serif}
+.screen12-card hr{border:0;border-top:1px solid rgba(16,53,95,.12);margin:22px 0 20px}
+.screen12-offer{display:grid;grid-template-columns:24px 1fr;gap:8px}
+.screen12-offer>span{width:18px;height:18px;border:1.5px solid #b77920;border-radius:50%;display:grid;place-items:center;color:#b77920;font:12px Arial,sans-serif}
+.screen12-offer strong,.screen12-offer em,.screen12-offer b{display:block}
+.screen12-offer strong{font:600 14px/1.25 Arial,sans-serif}
+.screen12-offer em{color:var(--gold);font-size:14px;margin-top:3px}
+.screen12-offer b{font:400 14px Arial,sans-serif;margin-top:4px}
+.screen12-btn{display:block;text-align:center;text-decoration:none;color:#fff;background:linear-gradient(180deg,#bd852f,#a66b17);border-radius:4px;padding:10px 9px 9px;font:12px Arial,sans-serif;letter-spacing:.04em;box-shadow:0 3px 8px rgba(84,55,16,.16);margin-top:14px}
+.screen12-bottom-btn{margin-top:auto}
+.screen12-benefits{list-style:none;margin:0;padding:0}
+.screen12-benefits li{position:relative;padding-left:29px;margin-bottom:17px;font:14px/1.35 Arial,sans-serif}
+.screen12-benefits li:before{content:"✓";position:absolute;left:0;top:0;width:18px;height:18px;border:1.5px solid #b77920;border-radius:50%;display:grid;place-items:center;color:#b77920;font-size:11px}
+.screen12-conversation{margin-top:24px;display:grid;grid-template-columns:250px 1fr;background:rgba(255,252,247,.80);border:1px solid rgba(16,53,95,.08);border-radius:10px;box-shadow:0 5px 18px rgba(75,56,33,.08);overflow:hidden}
+.screen12-conversation-icon{display:grid;place-items:center;border-right:1px solid rgba(169,110,25,.28);font-size:82px;color:var(--gold)}
+.screen12-conversation-copy{text-align:left;padding:24px 34px}
+.screen12-conversation-copy h3{margin:0;font-size:28px;font-weight:400}
+.screen12-conversation-sub{margin:7px 0 0;color:var(--gold);font-size:17px;font-style:italic}
+.screen12-small-rule{width:90px;margin:12px 0 14px}
+.screen12-conversation-copy>p:not(.screen12-conversation-sub):not(.screen12-note){margin:0;font:14.5px/1.5 Arial,sans-serif}
+.screen12-conversation-btn{width:max-content;max-width:100%;padding-left:18px;padding-right:18px}
+.screen12-note{margin:8px 0 0;color:var(--gold);font-size:14px;font-style:italic}
+.screen12-bottom-rule{margin-top:20px}
+.screen12-closing{padding-bottom:72px}
+.screen12-closing p{margin:0;font-size:21px;line-height:1.35}
+.screen12-closing p:last-child{color:var(--gold);font-style:italic;margin-top:3px}
+
+@media(max-width:700px){
+  .screen12{min-height:0;background:
+    linear-gradient(to bottom,rgba(255,250,241,.99) 0%,rgba(255,250,241,.99) 84%,rgba(255,250,241,.82) 92%,rgba(255,250,241,.48) 100%),
+    url("assets/screen12/screen12-work-with-me-scenery.jpg") center bottom/auto 16% no-repeat,
+    var(--ivory)}
+  .screen12-inner{width:100%;min-height:100svh;padding:34px 16px 0}
+  .screen12-title{font-size:44px}
+  .screen12-subtitle{font-size:19px}
+  .screen12-cards{grid-template-columns:1fr;max-width:450px;margin:auto}
+  .screen12-card{min-height:0;padding:24px 20px 20px}
+  .screen12-card-copy{font-size:15px}
+  .screen12-conversation{max-width:450px;margin:20px auto 0;grid-template-columns:1fr}
+  .screen12-conversation-icon{min-height:130px;border-right:0;border-bottom:1px solid rgba(169,110,25,.25)}
+  .screen12-conversation-copy{padding:22px 20px}
+  .screen12-conversation-btn{width:100%}
+  .screen12-closing p{font-size:19px}
+}
+
+/* =========================================================
+   SCREEN 12 — SIMPLIFIED BUSINESS VERSION
+   Only Screen 12 changed.
+   ========================================================= */
+
+/* No scenic/footer treatment: clean ivory business screen. */
+.screen12{
+  min-height:auto !important;
+  background:#fffaf1 !important;
+}
+
+.screen12-inner{
+  min-height:0 !important;
+  padding-bottom:52px !important;
+}
+
+/* WORK WITH ME is now the sole heading. */
+.screen12-kicker{
+  margin-bottom:0 !important;
+  font-size:20px !important;
+  letter-spacing:.14em !important;
+}
+
+/* Divider sits directly under WORK WITH ME. */
+.screen12-dot-rule{
+  margin-top:18px !important;
+  margin-bottom:30px !important;
+}
+
+/* Remove any leftover space from deleted title/subtitle. */
+.screen12-title,
+.screen12-subtitle{
+  display:none !important;
+}
+
+/* Keep all three service cards visually equal. */
+.screen12-cards{
+  align-items:stretch;
+}
+.screen12-card{
+  height:100%;
+}
+
+/* Align each card's final CTA on the same baseline. */
+.screen12-bottom-btn{
+  margin-top:auto !important;
+}
+
+/* Complimentary conversation becomes a clean business panel. */
+.screen12-conversation{
+  grid-template-columns:1fr !important;
+  margin-top:26px !important;
+}
+.screen12-conversation-copy{
+  padding:30px 40px 32px !important;
+}
+.screen12-conversation-copy h3,
+.screen12-conversation-copy p{
+  text-align:left;
+}
+.screen12-conversation-icon{
+  display:none !important;
+}
+
+/* Removed bottom ornament and closing lines. */
+.screen12-bottom-rule,
+.screen12-closing{
+  display:none !important;
+}
+
+@media(max-width:700px){
+  .screen12{
+    background:#fffaf1 !important;
+  }
+  .screen12-inner{
+    padding-bottom:36px !important;
+  }
+  .screen12-kicker{
+    font-size:17px !important;
+  }
+  .screen12-conversation{
+    grid-template-columns:1fr !important;
+  }
+  .screen12-conversation-copy{
+    padding:24px 20px 26px !important;
+  }
+}
+
+/* =========================================================
+   SCREEN 12 — CTA-ONLY DESTINATION
+   Hidden from normal page flow until Screen 11 CTA is clicked.
+   ========================================================= */
+.screen12-merge-breathing,
+.screen12{
+  display:none;
+}
+
+body.screen12-open .screen12-merge-breathing{
+  display:block;
+}
+
+body.screen12-open .screen12{
+  display:block;
+}
+
+
+
+/* Screens 13–14 only */
+.s13gap,.s14gap{height:20px;background:#fff}
+.s13,.s14{--n:#10355f;--g:#a96e19;background:#fffaf1;color:var(--n);font-family:Georgia,"Times New Roman",serif}
+.s13in{max-width:1050px;margin:auto;padding:58px 70px 55px}
+.eyebrow{text-align:center;color:var(--g);font:500 18px Arial,sans-serif;letter-spacing:.18em;margin:0}
+.rule{width:190px;margin:24px auto 12px;display:grid;grid-template-columns:1fr 7px 1fr;gap:10px;align-items:center}.rule i{height:1px;background:#d7bd93}.rule b{width:7px;height:7px;background:var(--g);border-radius:50%}
+.s13 h2{text-align:center;font-size:66px;line-height:1;margin:0 0 52px;font-weight:400}
+.quotes article{position:relative;padding:27px 20px 28px 118px;border-bottom:1px solid #dfc9a6}.quotes article:first-child{padding-top:0}.quotes article:last-child{border:0}
+.quotes article:before{content:"“";position:absolute;left:12px;top:18px;color:#e5d3b8;font-size:92px;line-height:.7}.quotes article:first-child:before{top:-8px}
+.quotes q{display:block;quotes:none;font-size:22px;line-height:1.45}.quotes strong{display:block;color:var(--g);font:500 16px Arial,sans-serif;margin-top:17px}
+.readmore{display:block;width:max-content;margin:8px auto 0;color:var(--n);text-decoration:none;border-bottom:1px solid #d4ad70;padding-bottom:5px;font:500 16px Arial,sans-serif;letter-spacing:.12em}
+.s14in{max-width:1120px;margin:auto;padding:55px 55px 60px}.s14grid{display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center;margin-top:30px}.s14copy{text-align:left}.s14 h2{font-size:58px;line-height:1.04;font-weight:400;margin:0}.lead{font-size:20px;line-height:1.45;margin:28px 0}
+.callout{padding:25px 28px;background:#fffaf4;border:1px solid #eadcc8;border-radius:12px}.callout p{font-size:17px;line-height:1.45;margin:0}.callout a{display:block;margin-top:20px;padding:14px 16px;background:linear-gradient(#bd852f,#a66b17);color:#fff;text-decoration:none;text-align:center;border-radius:5px;font:500 13px Arial,sans-serif;letter-spacing:.07em}.conf{font-size:16px;margin:18px 0 0 18px;color:var(--n)}
+.s14visual{min-height:570px;border-radius:20px;background:linear-gradient(rgba(255,250,241,.15),rgba(255,250,241,.2)),url("assets/screen14/screen14-exact-reference-photo.jpg") center/cover no-repeat;filter:saturate(.58) sepia(.08) brightness(1.07)}
+@media(max-width:700px){.s13in{padding:44px 24px}.eyebrow{font-size:15px}.s13 h2{font-size:47px;margin-bottom:34px}.quotes article{padding:24px 0 25px 48px}.quotes article:before{left:0;font-size:58px}.quotes q{font-size:18px}.quotes strong{font-size:14px}.readmore{font-size:12px;letter-spacing:.08em;text-align:center}.s14in{padding:42px 20px}.s14grid{grid-template-columns:1fr;gap:28px}.s14 h2{font-size:44px}.lead{font-size:18px}.callout p{font-size:16px}.s14visual{min-height:390px;order:-1}}
+
+/* =========================================================
+   SITE COLOR SYMMETRY — IVORY PASS 1
+   Source of truth: Welcome-screen ivory #FFFCEF
+   Base page canvas only; scenery and overlays remain untouched.
+   ========================================================= */
+:root{
+  --site-ivory:#fffcef;
+}
+
+.screen4,
+.screen5,
+.screen6,
+.screen7,
+.screen8,
+.screen9,
+.screen10,
+.screen11,
+.screen12,
+.s13,
+.s14{
+  background-color:var(--site-ivory) !important;
+}
+
+/* =========================================================
+   SITE COLOR SYMMETRY — NAVY PASS 1
+   Source of truth: Welcome-screen navy #15385D
+   Primary navy identity only.
+   ========================================================= */
+:root{
+  --site-navy:#15385d;
+}
+
+/* Screen 2–3 primary text */
+.screen2,
+.screen3,
+.friction-module{
+  color:var(--site-navy) !important;
+}
+.screen2 h1,.screen2 h2,.screen2 h3,.screen2 p,
+.screen3 h1,.screen3 h2,.screen3 h3,.screen3 p,
+.friction-module h1,.friction-module h2,.friction-module h3,.friction-module p{
+  color:var(--site-navy) !important;
+}
+
+/* Screen 4 primary identity */
+.screen4,
+.screen4 h1,.screen4 h2,.screen4 h3,.screen4 p{
+  color:var(--site-navy) !important;
+}
+
+/* Screens 5–8 already use the master navy; reinforce primary identity only. */
+.screen5,.screen6,.screen7,.screen8{
+  color:var(--site-navy) !important;
+}
+
+/* Screen 9 — main outlier: normalize its multiple primary blues. */
+.screen9,
+.screen9 h1,.screen9 h2,.screen9 h3,.screen9 h4,
+.screen9 p,.screen9 li,.screen9 a,
+.screen9-story,.screen9-story-copy,.screen9-lead,
+.screen9-today-card{
+  color:var(--site-navy) !important;
+}
+
+/* Screens 10–12 primary text/navy identity */
+.screen10,.screen11,.screen12{
+  color:var(--site-navy) !important;
+}
+.screen10 h1,.screen10 h2,.screen10 h3,.screen10 p,.screen10 li,.screen10 a,
+.screen11 h1,.screen11 h2,.screen11 h3,.screen11 p,.screen11 li,
+.screen12 h1,.screen12 h2,.screen12 h3,.screen12 p,.screen12 li{
+  color:var(--site-navy) !important;
+}
+
+/* Preserve white text on gold buttons in Work With Me. */
+.screen12 .screen12-btn,
+.screen12 .screen12-card-btn,
+.screen12 .screen12-conversation-btn{
+  color:#fff !important;
+}
+
+/* Screens 13–14 primary navy identity */
+.s13,.s14{
+  --n:var(--site-navy) !important;
+  color:var(--site-navy) !important;
+}
+.s13 h1,.s13 h2,.s13 h3,.s13 q,
+.s14 h1,.s14 h2,.s14 h3,.s14 p{
+  color:var(--site-navy) !important;
+}
+
+/* Preserve intentional gold testimonial names and white booking-button text. */
+.s13 .quotes strong{
+  color:var(--g) !important;
+}
+.s14 .callout a{
+  color:#fff !important;
+}
+
+/* =========================================================
+   SITE COLOR SYMMETRY — GOLD PASS 1
+   One master gold across solid gold identity.
+   Ivory/navy/scenery/layout/content remain untouched.
+   ========================================================= */
+:root{
+  --site-gold:#b87918;
+}
+
+/* Standard gold text / eyebrow labels / emphasized phrases */
+.screen1 .gold,.screen2 .gold,.screen3 .gold,.screen4 .gold,
+.screen5 .gold,.screen6 .gold,.screen7 .gold,.screen8 .gold,
+.screen9 .gold,.screen10 .gold,.screen11 .gold,.screen12 .gold,
+.screen9 .eyebrow,.screen10 .eyebrow,.screen11 .eyebrow,.screen12 .eyebrow,
+.s13 .eyebrow,.s14 .eyebrow,
+.screen13-name,.screen12-kicker{
+  color:var(--site-gold) !important;
+}
+
+/* Newer screens use local --g; point it to the master gold. */
+.s13,.s14{
+  --g:var(--site-gold) !important;
+}
+
+/* Common solid decorative gold: rules, dots, borders and icon strokes. */
+.screen9 .dot,.screen10 .dot,.screen11 .dot,.screen12 .dot,
+.rule b,.screen13-dot-rule b,.screen14-dot-rule b{
+  background-color:var(--site-gold) !important;
+}
+
+/* Preserve subtle rules as the same gold family through opacity. */
+.rule i,.screen13-dot-rule span,.screen14-dot-rule span{
+  background-color:rgba(184,121,24,.38) !important;
+}
+
+/* Work With Me and conversation buttons:
+   same master-gold family, restrained tonal depth only. */
+.screen12 .screen12-btn,
+.screen12 .screen12-card-btn,
+.screen12 .screen12-conversation-btn,
+.s14 .callout a{
+  background:linear-gradient(180deg,#c88a2d 0%,var(--site-gold) 58%,#a86914 100%) !important;
+  color:#fff !important;
+}
+
+/* Screen 9: explicitly pull solid decorative accents into the master family. */
+.screen9 [style*="#0B315D"],
+.screen9 [style*="#082D5D"],
+.screen9 [style*="#102F58"]{
+  color:inherit;
+}
+
+/* =========================================================
+   APPROVED DESKTOP REFINEMENT PASS
+   - scenery audit decisions
+   - Screen 9 clean editorial treatment
+   - Work With Me CTA cleanup
+   - final Conversation CTA refinement
+   Locked master colors remain unchanged:
+     Ivory #FFFCEF | Navy #15385D | Gold #B87918
+   ========================================================= */
+
+@media (min-width:701px){
+
+  /* -------------------------------------------------------
+     SCREEN 2 — SOFTEN
+     Same approved scenery; quieter and more bottom-weighted.
+     ------------------------------------------------------- */
+  .life-module .screen{
+    background:var(--site-ivory);
+  }
+  .life-module .bg{
+    opacity:.76;
+    filter:saturate(.82) contrast(.90) brightness(1.04);
+    -webkit-mask-image:linear-gradient(
+      to bottom,
+      rgba(0,0,0,.22) 0%,
+      rgba(0,0,0,.38) 38%,
+      rgba(0,0,0,.72) 67%,
+      #000 100%
+    );
+    mask-image:linear-gradient(
+      to bottom,
+      rgba(0,0,0,.22) 0%,
+      rgba(0,0,0,.38) 38%,
+      rgba(0,0,0,.72) 67%,
+      #000 100%
+    );
+  }
+
+  /* -------------------------------------------------------
+     SCREEN 3 — VERY LIGHT SOFTEN AT BOTTOM ONLY
+     ------------------------------------------------------- */
+  .friction-wash{
+    background:linear-gradient(to bottom,
+      rgba(255,252,239,.98) 0%,
+      rgba(255,252,239,.96) 47%,
+      rgba(255,252,239,.88) 61%,
+      rgba(255,252,239,.46) 82%,
+      rgba(255,252,239,.16) 100%);
+  }
+
+  /* -------------------------------------------------------
+     SCREEN 6 — SOFTEN / MORE BOTTOM-WEIGHTED
+     Same scenery asset, no regeneration.
+     ------------------------------------------------------- */
+  .screen6{
+    background-image:
+      linear-gradient(to bottom,
+        rgba(255,252,239,.66) 0%,
+        rgba(255,252,239,.56) 30%,
+        rgba(255,252,239,.40) 58%,
+        rgba(255,252,239,.22) 100%),
+      url("assets/screen6/screen6-self-leadership-scenery.png");
+    background-repeat:no-repeat,no-repeat;
+    background-position:center top,center bottom;
+    background-size:100% 100%,100% 84%;
+  }
+
+  /* -------------------------------------------------------
+     SCREEN 8 — SOFTEN SLIGHTLY
+     ------------------------------------------------------- */
+  .screen8{
+    background-image:
+      linear-gradient(to bottom,
+        rgba(255,252,239,.52) 0%,
+        rgba(255,252,239,.36) 33%,
+        rgba(255,252,239,.25) 54%,
+        rgba(255,252,239,.36) 73%,
+        rgba(255,252,239,.78) 100%),
+      url("assets/screen8/screen8-meeting-life-well-scenery.png");
+  }
+
+  /* -------------------------------------------------------
+     SCREEN 9 — SIMPLIFY / CLEAN
+     Mountains removed. Existing branches retained as a subtle
+     right-edge decorative element over master ivory.
+     ------------------------------------------------------- */
+  .screen9{
+    background:var(--site-ivory) !important;
+  }
+  .screen9-bg{
+    background:none !important;
+  }
+  .screen9-bg::before{
+    content:"";
+    position:absolute;
+    top:16%;
+    right:0;
+    width:min(330px,29vw);
+    height:62%;
+    background:url("assets/screen9/screen9-branches-only.png") right center/contain no-repeat;
+    opacity:.62;
+  }
+  .screen9-bg::after{
+    background:none !important;
+  }
+
+  /* -------------------------------------------------------
+     WORK WITH ME — compact CTA system + aligned bottom row
+     ------------------------------------------------------- */
+  .screen12-card{
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+  /* All buttons are content-width rather than gold bars. */
+  .screen12 .screen12-btn{
+    width:max-content !important;
+    min-width:0 !important;
+    max-width:90% !important;
+    align-self:center !important;
+    padding:10px 22px 9px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    white-space:nowrap;
+  }
+
+  /* The final CTA in each service card shares one baseline. */
+  .screen12 .screen12-bottom-btn{
+    margin-top:auto !important;
+  }
+
+  /* Bottom invitation is intentionally minimal + centered. */
+  .screen12-conversation-copy{
+    text-align:center !important;
+    padding:34px 40px 36px !important;
+  }
+  .screen12-conversation-copy h3,
+  .screen12-conversation-copy p{
+    text-align:center !important;
+  }
+  .screen12-conversation-copy .screen12-small-rule{
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+  .screen12-conversation-btn{
+    display:inline-block !important;
+    width:auto !important;
+    max-width:90% !important;
+    margin:20px auto 0 !important;
+    padding:11px 22px 10px !important;
+  }
+
+  /* -------------------------------------------------------
+     FINAL COMPLIMENTARY CONVERSATION SCREEN
+     Exact approved photo remains untouched.
+     Compact CTA; layout stays intact.
+     ------------------------------------------------------- */
+  .s14 .callout a{
+    display:inline-block !important;
+    width:auto !important;
+    max-width:100% !important;
+    padding:14px 22px !important;
+  }
+}
+
+/* =========================================================
+   APPROVED FIX PASS — Screen 2 / Self-Leadership / Begin
+   ========================================================= */
+@media (min-width:701px){
+
+  /* Screen 2: full-width scenery, softened only by ivory overlay. */
+  .life-module .screen{
+    background:var(--site-ivory) !important;
+  }
+  .life-module .bg{
+    opacity:1 !important;
+    filter:none !important;
+    -webkit-mask-image:none !important;
+    mask-image:none !important;
+    background-size:cover !important;
+    background-position:center center !important;
+  }
+  .life-module .screen::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(
+      to bottom,
+      rgba(255,252,239,.72) 0%,
+      rgba(255,252,239,.60) 36%,
+      rgba(255,252,239,.42) 62%,
+      rgba(255,252,239,.18) 100%
+    );
+    z-index:1;
+  }
+  .life-module .screen > *:not(.bg){
+    position:relative;
+    z-index:2;
+  }
+
+  /* Self-Leadership: no abrupt band; one seamless long fade. */
+  .screen6{
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(255,252,239,.96) 0%,
+        rgba(255,252,239,.90) 26%,
+        rgba(255,252,239,.76) 48%,
+        rgba(255,252,239,.52) 68%,
+        rgba(255,252,239,.24) 85%,
+        rgba(255,252,239,0) 100%
+      ),
+      url("assets/screen6/screen6-self-leadership-scenery.png") center bottom/cover no-repeat !important;
+  }
+
+  /* Begin Where You Are: orientation-only service cards. */
+  .screen11-card{
+    min-height:170px !important;
+    grid-template-columns:175px 1fr !important;
+  }
+  .screen11-card-icon-wrap{
+    min-height:170px !important;
+  }
+  .screen11-card-copy{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    padding:26px 30px !important;
+  }
+  .screen11-card-copy h3{
+    margin:0 0 8px !important;
+  }
+  .screen11-card-copy .screen11-sub{
+    margin:0 !important;
+  }
+}
+
+/* =========================================================
+   V9 — PRECISE TWO-LAYER CORRECTION
+   Screen 2 full-width module background
+   Self-Leadership separate scenery + ivory veil
+   ========================================================= */
+
+@media (min-width:901px){
+
+  /* -------------------------------------------------------
+     SCREEN 2
+     Use the outer full-width module as the scenic layer.
+     The inner screen stays transparent so it cannot read as a card.
+     ------------------------------------------------------- */
+  .life-module{
+    position:relative !important;
+    background:
+      url("assets/screen1-clean-bg.jpg") center center/cover no-repeat !important;
+  }
+
+  .life-module::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(
+      to bottom,
+      rgba(255,252,239,.56) 0%,
+      rgba(255,252,239,.48) 36%,
+      rgba(255,252,239,.30) 68%,
+      rgba(255,252,239,.12) 100%
+    );
+    z-index:0;
+  }
+
+  .life-module .screen{
+    background:transparent !important;
+    position:relative;
+    z-index:1;
+  }
+
+  .life-module .bg{
+    visibility:hidden !important;
+    opacity:0 !important;
+  }
+
+  .life-module .screen::after{
+    display:none !important;
+  }
+
+  .life-module .screen > *:not(.bg){
+    position:relative;
+    z-index:2;
+  }
+
+  /* -------------------------------------------------------
+     SELF-LEADERSHIP
+     Keep full scenery continuously underneath.
+     Fade a separate ivory veil away over the entire screen.
+     ------------------------------------------------------- */
+  .screen6{
+    position:relative !important;
+    background:
+      url("assets/screen6/screen6-self-leadership-scenery.png")
+      center bottom/cover no-repeat !important;
+  }
+
+  .screen6::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(
+      to bottom,
+      rgba(255,252,239,.98) 0%,
+      rgba(255,252,239,.94) 18%,
+      rgba(255,252,239,.86) 35%,
+      rgba(255,252,239,.72) 52%,
+      rgba(255,252,239,.52) 68%,
+      rgba(255,252,239,.28) 83%,
+      rgba(255,252,239,.08) 94%,
+      rgba(255,252,239,0) 100%
+    );
+    z-index:0;
+  }
+
+  .screen6 > *{
+    position:relative;
+    z-index:1;
+  }
+}
+
+/* =========================================================
+   V10 — WORK WITH ME REFINEMENT ONLY
+   Plain ivory, subtle icons, compact BOOK + outlined BEGIN,
+   smaller centered bottom invitation.
+   ========================================================= */
+
+.screen12{
+  background:#fffcef !important;
+}
+
+@media (min-width:701px){
+
+  /* Cards stay clean and businesslike. */
+  .screen12-cards{
+    align-items:stretch !important;
+  }
+
+  .screen12-card{
+    display:flex !important;
+    flex-direction:column !important;
+    min-height:620px !important;
+  }
+
+  /* Smaller, subtler icons. */
+  .screen12-card-icon{
+    width:66px !important;
+    height:66px !important;
+    margin:0 auto 14px !important;
+  }
+
+  .screen12-card-icon svg{
+    stroke-width:1.45 !important;
+  }
+
+  /* One-to-One offer rows with compact BOOK beside the title. */
+  .screen12-offer-with-book{
+    display:grid !important;
+    grid-template-columns:24px 1fr !important;
+    gap:9px !important;
+    align-items:start !important;
+  }
+
+  .screen12-offer-main{
+    width:100% !important;
+  }
+
+  .screen12-offer-title-row{
+    display:flex !important;
+    align-items:flex-start !important;
+    justify-content:space-between !important;
+    gap:14px !important;
+  }
+
+  .screen12-mini-book{
+    flex:0 0 auto !important;
+    display:inline-block !important;
+    padding:8px 17px 7px !important;
+    border-radius:4px !important;
+    text-decoration:none !important;
+    color:#fff !important;
+    background:linear-gradient(180deg,#c88a2d 0%,#b87918 58%,#a86914 100%) !important;
+    font:600 12px Arial,Helvetica,sans-serif !important;
+    letter-spacing:.05em !important;
+    box-shadow:0 2px 6px rgba(84,55,16,.14) !important;
+    white-space:nowrap !important;
+  }
+
+  /* Executive + Workshops BEGIN buttons: subtle outlined style. */
+  .screen12 .screen12-bottom-btn{
+    margin-top:auto !important;
+    align-self:center !important;
+    width:auto !important;
+    min-width:120px !important;
+    padding:10px 22px 9px !important;
+    color:#b87918 !important;
+    background:transparent !important;
+    border:1px solid #b87918 !important;
+    box-shadow:none !important;
+    white-space:nowrap !important;
+  }
+
+  .screen12 .screen12-bottom-btn:hover{
+    background:rgba(184,121,24,.06) !important;
+  }
+
+  /* Bottom invitation: smaller, lighter, centered. */
+  .screen12-conversation{
+    width:min(650px,68%) !important;
+    margin:24px auto 0 !important;
+    grid-template-columns:1fr !important;
+    box-shadow:none !important;
+    border:1px solid rgba(184,121,24,.42) !important;
+    background:rgba(255,252,239,.56) !important;
+  }
+
+  .screen12-conversation-copy{
+    padding:22px 26px 24px !important;
+    text-align:center !important;
+  }
+
+  .screen12-conversation-copy h3{
+    text-align:center !important;
+    margin:0 0 14px !important;
+    font-size:24px !important;
+  }
+
+  .screen12-conversation-copy p{
+    text-align:center !important;
+  }
+
+  .screen12-conversation-btn{
+    display:inline-block !important;
+    width:auto !important;
+    max-width:100% !important;
+    margin:0 auto !important;
+    padding:10px 20px 9px !important;
+  }
+
+  /* No visual icon block in the bottom invitation. */
+  .screen12-conversation-icon{
+    display:none !important;
+  }
+}
+
+/* V11: icon/card-height refinements only. Screen 2 CSS intentionally untouched. */
+@media (min-width:701px){
+  .screen12-card{
+    min-height:0 !important;
+    height:auto !important;
+    padding-bottom:18px !important;
+  }
+  .screen12-card-icon,
+  .screen11-card-icon{
+    width:58px !important;
+    height:58px !important;
+  }
+  .screen12-card-icon svg,
+  .screen11-card-icon svg{
+    stroke-width:1.35 !important;
+  }
+  .screen12-card:nth-child(2) .screen12-bottom-btn,
+  .screen12-card:nth-child(3) .screen12-bottom-btn{
+    margin-top:22px !important;
+  }
+}
+
+/* =========================================================
+   V12 — APPROVED CLEANUP PASS
+   Screen 2 content cleanup only; Executive icon refinement;
+   Work Together columns tightened.
+   ========================================================= */
+
+@media (min-width:701px){
+
+  /* What is it like to work together?
+     No icons; let each column fit its actual content. */
+  .screen10-columns{
+    align-items:start !important;
+  }
+
+  .screen10-column{
+    min-height:0 !important;
+    padding:0 25px 10px !important;
+  }
+
+  .screen10-column h3{
+    margin-top:0 !important;
+  }
+
+  .screen10-mini-rule{
+    margin-top:11px !important;
+    margin-bottom:13px !important;
+  }
+
+  .screen10-quote-rule{
+    margin-top:20px !important;
+  }
+
+  /* Executive icons stay deliberately subtle. */
+  .screen11-card-icon svg,
+  .screen12-card-icon svg{
+    stroke-width:1.3 !important;
+  }
+}
+
+/* =========================================================
+   V14 — PRECISE SCREEN 2 SCENERY + BEGIN ALIGNMENT
+   Only these two approved corrections.
+   ========================================================= */
+
+@media (min-width:901px){
+
+  /* -------------------------------------------------------
+     SCREEN 2
+     Keep current scenery asset, but stop full-screen cover behavior.
+     Bottom-anchor the scenery and let master ivory dominate above.
+     ------------------------------------------------------- */
+  .life-module{
+    position:relative !important;
+    background:
+      linear-gradient(
+        to bottom,
+        #fffcef 0%,
+        #fffcef 53%,
+        rgba(255,252,239,.98) 60%,
+        rgba(255,252,239,.90) 68%,
+        rgba(255,252,239,.70) 78%,
+        rgba(255,252,239,.38) 88%,
+        rgba(255,252,239,.10) 96%,
+        rgba(255,252,239,0) 100%
+      ),
+      url("assets/screen1-clean-bg.jpg") center bottom/100% 58% no-repeat !important;
+  }
+
+  .life-module::after{
+    display:none !important;
+  }
+
+  .life-module .screen{
+    background:transparent !important;
+  }
+
+  .life-module .bg{
+    visibility:hidden !important;
+    opacity:0 !important;
+  }
+
+  .life-module .screen::after{
+    display:none !important;
+  }
+
+  /* -------------------------------------------------------
+     WORK WITH ME
+     Keep compact cards but pin the two BEGIN buttons to the
+     same bottom baseline.
+     ------------------------------------------------------- */
+  .screen12-card:nth-child(2),
+  .screen12-card:nth-child(3){
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+  .screen12-card:nth-child(2) .screen12-bottom-btn,
+  .screen12-card:nth-child(3) .screen12-bottom-btn{
+    margin-top:auto !important;
+  }
+}
+
+/* =========================================================
+   V15 — SCREEN 2 DESKTOP FLOW RECONSTRUCTION ONLY
+   Replaces brittle absolute vertical positioning with controlled
+   normal flow. Current Screen 2 scenery/palette/content remain unchanged.
+   ========================================================= */
+@media (min-width:901px){
+
+  .life-module .screen{
+    position:relative !important;
+    width:900px !important;
+    height:1350px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    padding-top:48px !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  /* Reset old hard-coded slide coordinates for Screen 2 content only. */
+  .life-module .screen > .text,
+  .life-module .screen > .divider,
+  .life-module .screen > .transition-row,
+  .life-module .screen > .cta{
+    position:relative !important;
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    transform:none !important;
+  }
+
+  .life-module .text{
+    width:900px !important;
+    white-space:nowrap !important;
+  }
+
+  /* Title block */
+  .life-module .title1{
+    margin:0 !important;
+  }
+  .life-module .title2{
+    margin-top:17px !important;
+  }
+
+  /* First divider + transition row */
+  .life-module .d1{
+    margin-top:28px !important;
+  }
+  .life-module .transition-row{
+    width:804px !important;
+    height:44px !important;
+    margin-top:20px !important;
+  }
+  .life-module .simply{
+    margin-top:18px !important;
+  }
+
+  /* Reality / internal friction */
+  .life-module .d2{
+    margin-top:28px !important;
+  }
+  .life-module .reality{
+    margin-top:20px !important;
+  }
+  .life-module .friction{
+    margin-top:18px !important;
+  }
+
+  /* What once served us */
+  .life-module .d3{
+    margin-top:26px !important;
+  }
+  .life-module .once{
+    margin-top:20px !important;
+  }
+
+  /* Perception / response */
+  .life-module .d4{
+    margin-top:24px !important;
+  }
+  .life-module .shaped{
+    margin-top:20px !important;
+  }
+
+  /* Inward Clarity */
+  .life-module .d5{
+    margin-top:24px !important;
+  }
+  .life-module .inward{
+    margin-top:20px !important;
+  }
+  .life-module .evolve{
+    margin-top:12px !important;
+  }
+
+  /* Final CTA */
+  .life-module .d6{
+    margin-top:22px !important;
+  }
+  .life-module .begin{
+    margin-top:22px !important;
+  }
+  .life-module .cta{
+    width:472px !important;
+    height:52px !important;
+    margin-top:18px !important;
+    flex:none !important;
+  }
+
+  /* Preserve divider sizing while allowing flow. */
+  .life-module .divider{
+    width:180px !important;
+    height:18px !important;
+    flex:none !important;
+  }
+}
+
+
+
+/* ===== V18 MOBILE-ONLY FIXES: exactly two localized corrections ===== */
+@media (max-width:900px){
+
+  /* 1) Begin Where You Are — keep scenery full-width at the bottom on mobile */
+  .screen11{
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(255,252,239,1) 0%,
+        rgba(255,252,239,.98) 58%,
+        rgba(255,252,239,.90) 68%,
+        rgba(255,252,239,.72) 78%,
+        rgba(255,252,239,.48) 87%,
+        rgba(255,252,239,.18) 95%,
+        rgba(255,252,239,0) 100%
+      ),
+      url("assets/screen11/screen11-begin-scenery.png") center bottom / 100% auto no-repeat !important;
+  }
+
+  /* 2) Work With Me — prevent Safari/default link styling on BOOK links */
+  .screen12 a.screen12-book,
+  .screen12 .screen12-book,
+  .screen12 a[href].screen12-book{
+    color:#B87918 !important;
+    text-decoration:none !important;
+    -webkit-text-decoration:none !important;
+  }
+}
+
+
+/* ===== V19: exactly three approved changes ===== */
+
+/* 1) Begin Where You Are — desktop only: remove scenery, preserve current mobile */
+@media (min-width:901px){
+  .screen11{
+    background:#FFFCEF !important;
+  }
+  .screen11::before,
+  .screen11::after{
+    background:none !important;
+  }
+}
+
+/* 2) Work With Me — mobile BOOK links: use intended gold styling */
+@media (max-width:900px){
+  .screen12 .screen12-mini-book,
+  .screen12 a.screen12-mini-book{
+    color:#B87918 !important;
+    text-decoration:none !important;
+    -webkit-text-decoration:none !important;
+  }
+
+  /* 3) Work With Me — mobile BEGIN buttons: compact/content-width */
+  .screen12-card:nth-child(2) .screen12-bottom-btn,
+  .screen12-card:nth-child(3) .screen12-bottom-btn{
+    width:auto !important;
+    min-width:0 !important;
+    max-width:max-content !important;
+    display:inline-flex !important;
+    align-self:center !important;
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+}
+
+
+/* ===== V20: exactly two approved corrections ===== */
+
+/* 1) Begin Where You Are — desktop only: shorten section now that scenery is removed */
+@media (min-width:901px){
+  .screen11{
+    min-height:0 !important;
+    height:auto !important;
+    padding-bottom:56px !important;
+  }
+}
+
+/* 2) Work With Me — mobile BOOK links: restore compact gold CTA buttons with white text */
+@media (max-width:900px){
+  .screen12 .screen12-mini-book,
+  .screen12 a.screen12-mini-book{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:auto !important;
+    min-width:0 !important;
+    max-width:max-content !important;
+    padding:10px 18px !important;
+    background:#B87918 !important;
+    color:#FFFFFF !important;
+    border-radius:8px !important;
+    text-decoration:none !important;
+    -webkit-text-decoration:none !important;
+    line-height:1 !important;
+  }
+}
+
+
+/* ===== V21: approved Screen 11 desktop height correction only ===== */
+@media (min-width:901px){
+  .screen11-inner{
+    min-height:0 !important;
+    height:auto !important;
+  }
+}
+
+
+/* ===== V22: approved desktop height corrections for Screen 5 and Screen 10 only ===== */
+@media (min-width:901px){
+  .screen5,
+  .screen5-inner,
+  .screen10,
+  .screen10-inner{
+    min-height:0 !important;
+    height:auto !important;
+  }
+}
+
+
+/* ===== V23: approved Unseen Process typography-intensity adjustment only ===== */
+@media (min-width:901px){
+  .screen4 h1.screen4-mobile-title-fix{
+    font-size:42px !important;
+    font-weight:600 !important;
+  }
+  .screen4 .process-step{
+    font-size:0.86em !important;
+    font-weight:600 !important;
+  }
+}
+
+
+/* ===== V24: approved Unseen Process typography refinement only ===== */
+@media (min-width:901px){
+  .screen4 h1.screen4-mobile-title-fix{
+    font-size:42px !important;
+    font-weight:400 !important;
+  }
+  .screen4 .process-step{
+    font-size:1em !important;
+    font-weight:600 !important;
+  }
+}
+
+/* v14 — approved surgical refinement: Human Capability bridge alignment, desktop only */
+@media (min-width:901px){
+  .screen7-bridge{
+    transform:translateX(24px);
+  }
+}
+
+/* v15 — approved surgical refinement: hide Human Capability bridge dots on desktop only */
+@media (min-width:901px){
+  .screen7-bridge-dot{
+    display:none !important;
+  }
+}
+
+
+/* V17 — locked My Philosophy overview; replaces former public Screens 3–7 */
+.my-philosophy-overview{background:#FFFCEF;width:100%;margin:0;padding:0;}
+.my-philosophy-frame{width:100%;margin:0 auto;background:#FFFCEF;}
+.my-philosophy-art{display:block;width:100%;height:auto;margin:0 auto;}
+@media (min-width:901px){
+  .my-philosophy-overview{min-height:calc(100vh - 58px);display:flex;align-items:center;justify-content:center;}
+  .my-philosophy-art{max-height:calc(100vh - 58px);width:auto;max-width:100%;object-fit:contain;}
+}
+@media (max-width:900px){
+  .my-philosophy-overview{padding:18px 0;}
+  .my-philosophy-art{width:100%;height:auto;}
+}
+
+/* =========================================================
+   MY PHILOSOPHY — v18 full-screen HTML implementation
+   Locked visual reference translated into scenery + live type.
+   ========================================================= */
+.my-philosophy-merge-breathing{width:100%;height:20px;background:#fff;}
+.my-philosophy-overview{
+  position:relative;
+  width:100%;
+  min-height:calc(100vh - 58px);
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  background:#FFFCEF url('assets/my-philosophy/my-philosophy-scenery.jpg') center bottom/cover no-repeat;
+  color:#15385D;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.my-philosophy-overview::before{
+  content:"";
+  position:absolute;
+  inset:46% 0 0;
+  pointer-events:none;
+  background:radial-gradient(ellipse at 50% 72%, rgba(255,252,239,.99) 0%, rgba(255,252,239,.97) 58%, rgba(255,252,239,.78) 76%, rgba(255,252,239,0) 96%);
+  z-index:0;
+}
+.my-philosophy-inner{
+  width:min(94vw,1460px);
+  min-height:calc(100vh - 58px);
+  margin:0 auto;
+  padding:24px 0 22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  z-index:1;
+}
+.my-philosophy-eyebrow{
+  font-family:Arial,Helvetica,sans-serif;
+  color:#B87918;
+  font-size:20px;
+  line-height:1.15;
+  letter-spacing:.28em;
+  font-weight:500;
+}
+.my-philosophy-top-rule,.my-philosophy-bottom-rule{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:150px;margin:9px auto 9px;color:#B87918;
+}
+.my-philosophy-top-rule span,.my-philosophy-bottom-rule span{height:1px;flex:1;background:#cda865;}
+.my-philosophy-top-rule b,.my-philosophy-bottom-rule b{width:8px;height:8px;transform:rotate(45deg);background:#B87918;display:block;}
+.my-philosophy-title{
+  margin:0;
+  font-family:Baskerville,Georgia,"Times New Roman",serif;
+  font-size:clamp(46px,4.35vw,70px);
+  line-height:1.03;
+  font-weight:400;
+  letter-spacing:-.02em;
+  color:#15385D;
+}
+.my-philosophy-premise{
+  margin:10px 0 19px;
+  font-family:Baskerville,Georgia,"Times New Roman",serif;
+  font-size:clamp(20px,1.7vw,27px);
+  line-height:1.2;
+  color:#15385D;
+}
+.my-philosophy-journey{
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr) 34px minmax(0,1fr) 34px minmax(0,1fr) 34px minmax(0,1fr);
+  align-items:start;
+  gap:6px;
+}
+.my-philosophy-stage{min-width:0;}
+.my-philosophy-stage img{
+  width:min(100%,205px);
+  aspect-ratio:1/1;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  margin:0 auto 8px;
+  mix-blend-mode:multiply;
+}
+.my-philosophy-stage h3{
+  margin:0;
+  min-height:25px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(14px,1.15vw,19px);
+  line-height:1.1;
+  letter-spacing:.035em;
+  font-weight:600;
+  color:#15385D;
+  white-space:nowrap;
+}
+.my-philosophy-stage > i{display:block;width:55px;height:1px;background:#B87918;margin:10px auto 11px;}
+.my-philosophy-stage p{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(13px,.95vw,16px);
+  line-height:1.42;
+  color:#15385D;
+}
+.my-philosophy-arrow{
+  color:#B87918;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:38px;
+  line-height:1;
+  padding-top:87px;
+  font-weight:400;
+}
+.my-philosophy-inward-line{
+  position:relative;
+  width:74%;
+  height:24px;
+  margin:4px auto 0;
+  border-bottom:1.5px solid #B87918;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+}
+.my-philosophy-inward-line::before,.my-philosophy-inward-line::after{
+  content:"";position:absolute;bottom:0;width:22px;height:21px;border-bottom:1.5px solid #B87918;
+}
+.my-philosophy-inward-line::before{left:0;border-left:1.5px solid #B87918;border-bottom-left-radius:18px;transform:translateX(-21px);}
+.my-philosophy-inward-line::after{right:0;border-right:1.5px solid #B87918;border-bottom-right-radius:18px;transform:translateX(21px);}
+.my-philosophy-line-dot,.my-philosophy-line-end{width:8px;height:8px;border-radius:50%;background:#B87918;transform:translateY(4.5px);}
+.my-philosophy-line-end{width:9px;height:9px;}
+.my-philosophy-inward-label{
+  margin-top:9px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(17px,1.35vw,22px);
+  letter-spacing:.24em;
+  color:#B87918;
+  font-weight:500;
+}
+.my-philosophy-definition{
+  margin:3px 0 6px;
+  font-family:Baskerville,Georgia,"Times New Roman",serif;
+  font-size:clamp(18px,1.4vw,22px);
+  line-height:1.22;
+  color:#15385D;
+  white-space:nowrap;
+}
+.my-philosophy-bottom-rule{width:165px;margin-top:5px;margin-bottom:7px;}
+.my-philosophy-closing{
+  margin:0;
+  font-family:Baskerville,Georgia,"Times New Roman",serif;
+  font-size:clamp(19px,1.55vw,25px);
+  line-height:1.2;
+  color:#15385D;
+}
+.my-philosophy-closing-final{margin-top:5px;}
+.my-philosophy-closing-final em{color:#B87918;}
+
+@media (max-width:900px){
+  .my-philosophy-overview{min-height:auto;background-size:auto 100%;background-position:center bottom;}
+  .my-philosophy-inner{min-height:auto;width:92vw;padding:48px 0 56px;}
+  .my-philosophy-eyebrow{font-size:15px;}
+  .my-philosophy-title{font-size:clamp(38px,10vw,58px);}
+  .my-philosophy-premise{font-size:19px;margin-bottom:28px;max-width:90%;}
+  .my-philosophy-journey{display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .my-philosophy-stage{width:min(86vw,420px);}
+  .my-philosophy-stage img{width:210px;}
+  .my-philosophy-stage h3{white-space:normal;font-size:17px;min-height:0;}
+  .my-philosophy-stage p{font-size:15px;}
+  .my-philosophy-arrow{padding:0;font-size:34px;transform:rotate(90deg);margin:-3px 0;}
+  .my-philosophy-inward-line{width:72%;margin-top:20px;}
+  .my-philosophy-inward-label{font-size:17px;}
+  .my-philosophy-definition{font-size:17px;white-space:normal;}
+  .my-philosophy-closing-final br{display:none;}
+  .my-philosophy-closing{font-size:20px;max-width:90%;}
+}
+
+/* =========================================================
+   V20 — APPROVED HOMEPAGE REFINEMENTS (DESKTOP ONLY)
+   1) My Philosophy: clean ivory field; no landscape scenery.
+   2) Meeting Life Well: reduce excess vertical height only.
+   3) From My Philosophy onward, normalize primary headline scale
+      to Begin Where You Are and use the refined Philosophy serif voice.
+   Mobile remains unchanged.
+   ========================================================= */
+@media (min-width:901px){
+  .my-philosophy-overview{
+    background:#FFFCEF !important;
+  }
+  .my-philosophy-overview::before{
+    display:none !important;
+  }
+
+  .screen8,
+  .screen8-inner{
+    min-height:1050px !important;
+  }
+
+  .my-philosophy-title,
+  .screen8-title,
+  .screen9-title,
+  .screen10-title,
+  .screen11-title,
+  .s13 h2,
+  .s14 h2{
+    font-family:Baskerville,Georgia,"Times New Roman",serif !important;
+    font-size:59px !important;
+    font-weight:400 !important;
+    line-height:1.03 !important;
+    letter-spacing:-.02em !important;
+  }
+}
+
+
+/* =========================================================
+   V22 — APPROVED REMAINING FIXES FROM V21
+   - Standardize complimentary-conversation CTA wording/treatment.
+   - Header BOOK A CONVERSATION remains compact and unchanged.
+   - Paid One-to-One BOOK buttons remain unchanged.
+   - Remove decorative circles from non-clickable continuation cues.
+   - Preserve V20 clean Philosophy / shorter Meeting Life Well /
+     heading consistency exactly as inherited from V21.
+   ========================================================= */
+
+/* Shared small descriptor beneath complimentary-conversation CTAs. */
+.conversation-cta-note{
+  margin-top:7px;
+  color:#15385D;
+  font-family:Baskerville,Georgia,"Times New Roman",serif;
+  font-size:14px;
+  line-height:1.2;
+  text-align:center;
+}
+.conversation-cta-note em{font-style:italic;}
+
+/* Welcome desktop artwork contains the former button wording.
+   Cover only that button area with the approved live CTA; do not alter the
+   locked artwork elsewhere. */
+@media (min-width:701px){
+  .desktop-cta-hotspot{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(#c88e3d,#b87926);
+    color:#fff;
+    font:500 clamp(12px,1.05vw,17px)/1 Arial,Helvetica,sans-serif;
+    letter-spacing:.6px;
+    text-decoration:none;
+    z-index:2;
+    overflow:visible;
+  }
+  .desktop-cta-hotspot::before{
+    content:"BOOK A CONVERSATION  →";
+    white-space:nowrap;
+  }
+  .desktop-cta-hotspot::after{
+    content:"15-minute complimentary conversation";
+    position:absolute;
+    top:calc(100% + 7px);
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    color:#15385D;
+    font:italic clamp(11px,.9vw,14px)/1.2 Baskerville,Georgia,"Times New Roman",serif;
+    letter-spacing:0;
+    text-align:center;
+    white-space:nowrap;
+  }
+}
+
+/* Welcome mobile descriptor. */
+.welcome-mobile-cta-note{margin-top:8px;}
+
+/* Screen 2: keep existing button location/size; descriptor sits immediately below. */
+.life-module .screen2-cta-note{
+  position:relative;
+  z-index:2;
+  margin-top:7px;
+  color:#15385D;
+}
+@media (min-width:901px){
+  .life-module .screen2-cta-note{
+    font-size:14px;
+    flex:none;
+  }
+}
+@media (max-width:900px){
+  .life-module .screen2-cta-note{
+    order:19;
+    width:100%;
+    font-size:3.5vw;
+    margin-top:2.1vw;
+  }
+}
+
+/* Final complimentary-conversation screen descriptor. */
+.s14-cta-note{
+  margin-top:8px;
+  text-align:left;
+  color:#15385D !important;
+}
+@media (max-width:700px){
+  .s14-cta-note{text-align:center;font-size:14px;}
+}
+
+/* Work With Me: Executive, Workshops/Speaking, and bottom invitation now use
+   the same conversation language and show the same duration descriptor. */
+.screen12-conversation-action{
+  margin-top:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.screen12-conversation-action .screen12-bottom-btn{
+  margin-top:22px !important;
+  color:#fff !important;
+  background:linear-gradient(180deg,#c88a2d 0%,#b87918 58%,#a86914 100%) !important;
+  border:0 !important;
+  min-width:0 !important;
+  box-shadow:0 2px 6px rgba(84,55,16,.14) !important;
+}
+.screen12-conversation-action .conversation-cta-note{
+  margin-top:7px;
+  font-size:13px;
+}
+.screen12-conversation-copy .conversation-cta-note{
+  margin-top:7px;
+  font-size:13px;
+}
+@media (max-width:700px){
+  .screen12-conversation-action .conversation-cta-note,
+  .screen12-conversation-copy .conversation-cta-note{font-size:14px;}
+}
+
+/* Meeting Life Well: simple downward continuation cue, no decorative circle. */
+.screen8-continue-circle{
+  width:auto !important;
+  height:auto !important;
+  border:0 !important;
+  border-radius:0 !important;
+  margin-bottom:8px !important;
+  display:block !important;
+  color:var(--s8-gold) !important;
+  font-size:39px !important;
+  line-height:1 !important;
+}
+
+/* What Is It Like to Work Together?: simple arrow, no decorative circle. */
+.screen10-arrow-circle{
+  width:auto !important;
+  height:auto !important;
+  border:0 !important;
+  border-radius:0 !important;
+  display:block !important;
+  color:var(--gold) !important;
+  font-size:38px !important;
+  line-height:1 !important;
+}
+
+
+/* =========================================================
+   V23 — MEETING LIFE WELL CONTENT REFINEMENT
+   Approved scope only: replace the four seasonal rows with the
+   personal/professional changing-demands line; preserve the
+   existing Inward Clarity statement box and scenery; update the
+   first lower statement.
+   ========================================================= */
+.screen8-scope-line{
+  width:760px;
+  max-width:92%;
+  margin:0 auto 44px;
+}
+.screen8-scope-line p{
+  margin:0;
+  color:var(--s8-navy);
+  font-size:25px;
+  line-height:1.35;
+}
+@media (min-width:901px){
+  .screen8-title{margin-bottom:30px !important;}
+}
+@media (max-width:900px){
+  .screen8-scope-line{margin:0 auto 34px;}
+  .screen8-scope-line p{font-size:18px;line-height:1.4;}
+}
+
+/* =========================================================
+   V26 — MEETING LIFE WELL BREATHING SPACE ONLY
+   Restore vertical breathing room around the approved v25 copy,
+   existing Inward Clarity statement box, and lower capability copy.
+   No color, scenery, typography, copy, or other-screen changes.
+   ========================================================= */
+@media (min-width:901px){
+  .screen8,
+  .screen8-inner{
+    min-height:1180px !important;
+  }
+  .screen8-title{
+    margin-bottom:42px !important;
+  }
+  .screen8-scope-line{
+    margin-bottom:58px !important;
+  }
+  .screen8-statement-wrap{
+    margin-bottom:46px !important;
+  }
+  .screen8-spark-rule{
+    margin-bottom:24px !important;
+  }
+  .screen8-lower-row + .screen8-lower-row{
+    margin-top:18px !important;
+  }
+  .screen8-bottom-rule{
+    margin-top:30px !important;
+  }
+}
+
+@media (max-width:900px){
+  .screen8-title{
+    margin-bottom:34px !important;
+  }
+  .screen8-scope-line{
+    margin-bottom:44px !important;
+  }
+  .screen8-statement-wrap{
+    margin-bottom:36px !important;
+  }
+  .screen8-spark-rule{
+    margin-bottom:20px !important;
+  }
+  .screen8-lower-row + .screen8-lower-row{
+    margin-top:14px !important;
+  }
+  .screen8-bottom-rule{
+    margin-top:26px !important;
+  }
+}
+
+/* =========================================================
+   V27 — MY PHILOSOPHY BREATHING SPACE ONLY
+   Preserve approved copy, imagery, arrows, colors and typography.
+   Increase vertical separation between the major conceptual groups.
+   ========================================================= */
+@media (min-width:901px){
+  .my-philosophy-overview,
+  .my-philosophy-inner{
+    min-height:1120px !important;
+  }
+  .my-philosophy-inner{
+    padding:48px 0 56px !important;
+  }
+  .my-philosophy-title{
+    margin-top:8px !important;
+  }
+  .my-philosophy-premise{
+    margin-top:18px !important;
+    margin-bottom:42px !important;
+  }
+  .my-philosophy-stage img{
+    margin-bottom:14px !important;
+  }
+  .my-philosophy-stage > i{
+    margin-top:14px !important;
+    margin-bottom:15px !important;
+  }
+  .my-philosophy-inward-line{
+    margin-top:42px !important;
+  }
+  .my-philosophy-inward-label{
+    margin-top:14px !important;
+  }
+  .my-philosophy-definition{
+    margin-top:8px !important;
+    margin-bottom:20px !important;
+  }
+}
+
+/* =========================================================
+   V28 — INTERNAL BREATHING-SPACE CORRECTION ONLY
+   Redistribute space between content groups on My Philosophy and
+   Meeting Life Well. Remove the artificial desktop height/padding
+   expansion introduced in V27/V26. No copy, color, imagery,
+   typography, scenery, navigation, or other-screen changes.
+   ========================================================= */
+@media (min-width:901px){
+  /* My Philosophy: restore compact outer frame; breathe within content. */
+  .my-philosophy-overview,
+  .my-philosophy-inner{
+    min-height:calc(100vh - 58px) !important;
+  }
+  .my-philosophy-inner{
+    padding:24px 0 22px !important;
+  }
+  .my-philosophy-title{
+    margin-top:0 !important;
+  }
+  .my-philosophy-premise{
+    margin-top:24px !important;
+    margin-bottom:52px !important;
+  }
+  .my-philosophy-stage img{
+    margin-bottom:18px !important;
+  }
+  .my-philosophy-stage > i{
+    margin-top:17px !important;
+    margin-bottom:18px !important;
+  }
+  .my-philosophy-inward-line{
+    margin-top:58px !important;
+  }
+  .my-philosophy-inward-label{
+    margin-top:16px !important;
+  }
+  .my-philosophy-definition{
+    margin-top:10px !important;
+    margin-bottom:12px !important;
+  }
+
+  /* Meeting Life Well: remove added outer height; preserve and refine
+     separation between the approved conceptual groups. */
+  .screen8,
+  .screen8-inner{
+    min-height:1050px !important;
+  }
+  .screen8-title{
+    margin-bottom:44px !important;
+  }
+  .screen8-scope-line{
+    margin-bottom:54px !important;
+  }
+  .screen8-statement-wrap{
+    margin-bottom:44px !important;
+  }
+  .screen8-spark-rule{
+    margin-bottom:26px !important;
+  }
+  .screen8-lower-row + .screen8-lower-row{
+    margin-top:24px !important;
+  }
+  .screen8-bottom-rule{
+    margin-top:28px !important;
+  }
+}
+
+/* =========================================================
+   V29 — APPROVED DESKTOP REFINEMENTS ONLY
+   1) Philosophy definition matches opening premise text size.
+   2) Welcome + Life Doesn't Stand Still conversation CTAs are
+      visually more compact without changing wording.
+   3) Meeting Life Well Inward Clarity box is slightly more compact;
+      explanatory copy remains left aligned.
+   Mobile intentionally unchanged pending user testing.
+   ========================================================= */
+@media (min-width:901px){
+  .my-philosophy-definition{
+    font-size:clamp(20px,1.7vw,27px) !important;
+  }
+
+  /* Preserve the locked Welcome artwork footprint while covering its
+     embedded legacy button; render the live CTA as a smaller inner button. */
+  .desktop-cta-hotspot{
+    background:rgb(248,238,227) !important;
+    border-radius:0 !important;
+  }
+  .desktop-cta-hotspot::before{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:auto;
+    height:auto;
+    padding:13px 20px;
+    border-radius:7px;
+    background:linear-gradient(#c88e3d,#b87926);
+    color:#fff;
+  }
+
+  .life-module .cta{
+    width:340px !important;
+    height:46px !important;
+  }
+
+  .screen8-statement-wrap{
+    width:625px !important;
+  }
+  .screen8-statement{
+    padding:38px 42px 34px !important;
+    text-align:left !important;
+  }
+  .screen8-statement p{
+    text-align:left !important;
+  }
+}
+
+/* =========================================================
+   V30 — DESCRIPTOR SYSTEM + WELCOME CTA CLEANUP (DESKTOP ONLY)
+   Approved scope:
+   1) Standardize the six section descriptors from My Philosophy onward
+      to one gold, uppercase typographic treatment.
+   2) Keep the approved compact Welcome CTA size while softening the
+      cover over the legacy embedded CTA so no hard rectangular remnant
+      reads around the live button.
+   Mobile intentionally unchanged pending user testing.
+   ========================================================= */
+@media (min-width:901px){
+  .my-philosophy-eyebrow,
+  .screen8-eyebrow,
+  .screen9-kicker,
+  .screen11-kicker,
+  .s13 .eyebrow,
+  .s14 .eyebrow{
+    color:#B87918 !important;
+    font-family:Arial,Helvetica,sans-serif !important;
+    font-size:18px !important;
+    line-height:1.1 !important;
+    font-weight:500 !important;
+    letter-spacing:.18em !important;
+  }
+
+  /* Feather the legacy-button cover into the Welcome artwork while
+     preserving the already-approved compact live CTA. */
+  .desktop-cta-hotspot{
+    background:radial-gradient(ellipse at center,
+      rgba(248,238,227,1) 0%,
+      rgba(248,238,227,1) 68%,
+      rgba(248,238,227,.96) 78%,
+      rgba(248,238,227,.62) 89%,
+      rgba(248,238,227,0) 100%) !important;
+    overflow:visible !important;
+  }
+}
+
+/* =========================================================
+   V32 — MEETING LIFE WELL EMPHASIS ONLY
+   Approved scope: make only the words "freedom" and "well"
+   in the opening copy gold. No other changes.
+   ========================================================= */
+.screen8-scope-line em{
+  color:#B87918 !important;
+}
+
+
+/* =========================================================
+   V33 — THREE APPROVED REFINEMENTS ONLY
+   1) Meeting Life Well key thought: same size, slightly stronger
+      weight and more breathing room; existing gold freedom/well retained.
+   2) Work With Me conversation CTAs: keep solid gold/white on hover.
+   3) Begin Where You Are CTA: tighter desktop footprint, same type/treatment.
+   ========================================================= */
+@media (min-width:901px){
+  .screen8-key-thought{
+    display:block;
+    margin-top:8px;
+    padding:8px 0 6px;
+    font-weight:500;
+  }
+
+  .screen11-cta{
+    min-width:0 !important;
+    width:auto !important;
+    padding:11px 18px 10px !important;
+  }
+}
+
+.screen12 .screen12-conversation-action .screen12-bottom-btn:hover{
+  color:#fff !important;
+  background:linear-gradient(180deg,#bd7f25 0%,#ad7016 58%,#99600f 100%) !important;
+  border:0 !important;
+  box-shadow:0 3px 8px rgba(84,55,16,.18) !important;
+}
