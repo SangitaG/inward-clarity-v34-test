@@ -6890,3 +6890,23 @@ body.screen12-open .screen12{
     background:linear-gradient(to bottom,#FFFCEF 0%,rgba(255,252,239,.28) 28%,rgba(255,252,239,0) 58%),url("assets/redesign-v56/meeting-life-well-bottom-scenery-clean.jpg") center bottom/100% 100% no-repeat!important;
   }
 }
+
+/* =========================================================
+   V57 — MOBILE-ONLY POLISH
+   Scope: center My Philosophy Inward Clarity illustration and
+   preserve word spacing when desktop line breaks are hidden.
+   ========================================================= */
+@media (max-width:900px){
+  .my-philosophy-inward-icon{
+    height:176px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+  }
+  .my-philosophy-inward-icon img{
+    width:145px !important;
+    height:145px !important;
+    margin:0 auto !important;
+    display:block !important;
+  }
+}
