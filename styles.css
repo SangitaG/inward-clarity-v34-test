@@ -6910,3 +6910,16 @@ body.screen12-open .screen12{
     display:block !important;
   }
 }
+
+/* =========================================================
+   V58 — MOBILE-ONLY MY PHILOSOPHY CARD WIDTH CORRECTION
+   Scope: keep the Inward Clarity card fully inside the padded
+   mobile content area with equal left/right inset. Nothing else.
+   ========================================================= */
+@media (max-width:900px){
+  .my-philosophy-inward-card{
+    width:100% !important;
+    max-width:560px !important;
+    box-sizing:border-box !important;
+  }
+}
