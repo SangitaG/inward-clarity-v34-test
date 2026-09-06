@@ -6949,3 +6949,18 @@ body.screen12-open .screen12{
     display:none !important;
   }
 }
+
+/* =========================================================
+   V61 — CLIENT VALUE DESKTOP SCALE REFINEMENT ONLY
+   Scope: modestly reduce opening statement and journey circles.
+   Mobile and all other sections remain unchanged.
+   ========================================================= */
+@media (min-width:901px){
+  .client-value-v54-title{
+    font-size:52px !important;
+  }
+  .client-value-v54-circle{
+    width:190px !important;
+    height:190px !important;
+  }
+}
