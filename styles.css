@@ -6964,3 +6964,17 @@ body.screen12-open .screen12{
     height:190px !important;
   }
 }
+
+/* =========================================================
+   V62 — WORK WITH ME MOBILE CONVERSATION CTA COLOR ONLY
+   Scope: mobile-only BOOK A CONVERSATION buttons use the same
+   solid gold/white treatment as BOOK. No layout or desktop changes.
+   ========================================================= */
+@media (max-width:900px){
+  .work-with-me-redesign .wwm-conversation{
+    background:#B87918 !important;
+    border-color:#B87918 !important;
+    color:#fff !important;
+    opacity:1 !important;
+  }
+}
