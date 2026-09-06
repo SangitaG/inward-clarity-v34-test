@@ -6923,3 +6923,29 @@ body.screen12-open .screen12{
     box-sizing:border-box !important;
   }
 }
+
+/* =========================================================
+   V59 — MOBILE-ONLY MY PHILOSOPHY CARD COPY SCALING
+   Scope: scale only the text inside the corrected Inward Clarity
+   card so it fits proportionally on mobile. No other changes.
+   ========================================================= */
+@media (max-width:900px){
+  .my-philosophy-inward-copy{
+    padding:22px 18px 26px !important;
+  }
+  .my-philosophy-inward-label{
+    font-size:16px !important;
+    letter-spacing:.18em !important;
+    line-height:1.25 !important;
+    margin-bottom:12px !important;
+  }
+  .my-philosophy-definition{
+    max-width:440px !important;
+    margin:0 auto !important;
+    font-size:15.5px !important;
+    line-height:1.45 !important;
+  }
+  .my-philosophy-definition br{
+    display:none !important;
+  }
+}
